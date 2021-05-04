@@ -531,9 +531,16 @@ class _OutingState extends State<Outing> {
 
                 SizedBox(height: 30),
 
-                RaisedButton.icon(onPressed: (){},
-                  icon: Icon(Icons.arrow_back),
-                  label: Text('IN'),
+                Text(
+                  '$barcode',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.grey,
+                  ),
+                ),
+                ButtonWidget(
+                  onClicked: scanBarcode,
+                  text: 'OUT',
                 ),
                 SizedBox(height: 30),
 
@@ -546,10 +553,14 @@ class _OutingState extends State<Outing> {
 
                 Text(
                   '$barcode',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.grey,
+                  ),
                 ),
                 ButtonWidget(
                   onClicked: scanBarcode,
-                  text: 'OUT',
+                  text: 'IN',
                 ),
               ],
             ),
@@ -581,6 +592,7 @@ class Leave extends StatefulWidget {
 }
 
 class _LeaveState extends State<Leave> {
+  String barcode = 'Unknown';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -618,9 +630,16 @@ class _LeaveState extends State<Leave> {
 
                 SizedBox(height: 30),
 
-                RaisedButton.icon(onPressed: (){},
-                  icon: Icon(Icons.arrow_back),
-                  label: Text('IN'),
+                Text(
+                  '$barcode',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.grey,
+                  ),
+                ),
+                ButtonWidget(
+                  onClicked: scanBarcode,
+                  text: 'OUT',
                 ),
                 SizedBox(height: 30),
 
@@ -630,9 +649,16 @@ class _LeaveState extends State<Leave> {
                 ),
 
                 SizedBox(height: 30),
-                RaisedButton.icon(onPressed: (){},
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Out'),
+                Text(
+                  '$barcode',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.grey,
+                  ),
+                ),
+                ButtonWidget(
+                  onClicked: scanBarcode,
+                  text: 'IN',
                 ),
               ],
             ),
@@ -640,6 +666,21 @@ class _LeaveState extends State<Leave> {
         ],
       ),
     );
+  }
+  Future<void> scanBarcode() async {
+    try{
+      final barcode = await FlutterBarcodeScanner.scanBarcode("#ff6666",
+        "Cancel",
+        true,
+        ScanMode.BARCODE,
+      );
+      if (!mounted) return;
+      setState(() {
+        this.barcode = barcode;
+      });
+    } on PlatformException{
+      barcode = ' Failed to get platform version';
+    }
   }
 }
 
