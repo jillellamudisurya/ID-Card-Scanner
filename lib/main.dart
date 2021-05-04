@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -97,15 +99,8 @@ class Seclogin extends StatefulWidget {
 class _SecloginState extends State<Seclogin> {
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
 
-  void validate(){
-    if(formkey.currentState.validate()){
-      print("Validate");
-    }
-    else{
-      print("Not Validated");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +130,19 @@ class _SecloginState extends State<Seclogin> {
             padding: const EdgeInsets.all(15),
             child: Center(
               child: Form(
+
                 key: formkey,
                 child: TextFormField(
+
                   keyboardType: TextInputType.name,
                   obscureText: true,
+
+                  validator: (String name){
+                    if(name.isEmpty){
+                      return "Required *";
+                    }
+                  },
+
                   decoration: InputDecoration(
 
                     labelText: 'Enter Name',
@@ -150,7 +154,7 @@ class _SecloginState extends State<Seclogin> {
                       borderRadius:BorderRadius.all(Radius.circular(20)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
+                      borderSide: BorderSide(color: Colors.blue),
                       borderRadius:BorderRadius.all(Radius.circular(20)),
                     )
                   ),
@@ -161,13 +165,11 @@ class _SecloginState extends State<Seclogin> {
           Padding(
             padding: const EdgeInsets.all(15),
                 child: Form(
+                  key: formkey1,
                   child: TextFormField(
-                    validator: (value){
-                      if(value.isEmpty){
-                        return "Required";
-                      }
-                      else{
-                        return null;
+                    validator: (String password){
+                      if(password.isEmpty){
+                        return "Required *";
                       }
                     },
                     keyboardType: TextInputType.name,
@@ -188,7 +190,7 @@ class _SecloginState extends State<Seclogin> {
                     borderRadius:BorderRadius.all(Radius.circular(20)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
+                    borderSide: BorderSide(color: Colors.blue),
                     borderRadius:BorderRadius.all(Radius.circular(20)),
                     )
                     ),
@@ -197,8 +199,9 @@ class _SecloginState extends State<Seclogin> {
             ),
           Center(
             child: RaisedButton.icon(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Secsuccess()));
-              validate();
+              if(formkey.currentState.validate()&&formkey1.currentState.validate()) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Secsuccess()));
+              }
             },
                 icon: Icon(
                   Icons.login_sharp,
@@ -208,29 +211,6 @@ class _SecloginState extends State<Seclogin> {
             ),
           ),
           SizedBox(height: 30.0,),
-          //Row(
-            //children: [
-              //Center(
-                  //child: Text(
-                      //'Dont have an account? ',
-                    //style: TextStyle(
-                      //fontSize: 15.0,
-                      //color: Colors.grey,
-                    //  fontWeight: FontWeight.bold,
-                  //  ),
-                //  )
-              //),
-              //Center(
-                //child: RaisedButton.icon(onPressed: (){},
-                    //icon: Icon(
-                     // Icons.account_box,
-                    //),
-                   // label: Text('Sign Up'),
-                 // color: Colors.blue,
-               // ),
-             // ),
-           // ],
-         // ),
         ],
       ),
     );
@@ -244,6 +224,10 @@ class Adminlogin extends StatefulWidget {
 }
 
 class _AdminloginState extends State<Adminlogin> {
+
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -256,7 +240,7 @@ class _AdminloginState extends State<Adminlogin> {
       ),
       body: Column(
         children: [
-          SizedBox(height:30),
+          SizedBox(height:30.0),
           Center(
               child: Text(
                 'ADMIN LOGIN',
@@ -267,65 +251,84 @@ class _AdminloginState extends State<Adminlogin> {
                 ),
               )
           ),
-          SizedBox(height:30),
+          SizedBox(height: 30.0),
           Padding(
             padding: const EdgeInsets.all(15),
             child: Center(
-              child: TextField(
-                keyboardType: TextInputType.name,
-                obscureText: true,
-                decoration: InputDecoration(
+              child: Form(
 
-                    labelText: 'Enter Name',
-                    hintText: 'enter your name',
-                    filled: true,
-                    fillColor: Colors.grey,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius:BorderRadius.all(Radius.circular(20)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
-                      borderRadius:BorderRadius.all(Radius.circular(20)),
-                    )
+                key: formkey,
+                child: TextFormField(
+
+                  keyboardType: TextInputType.name,
+                  obscureText: true,
+
+                  validator: (String name){
+                    if(name.isEmpty){
+                      return "Required *";
+                    }
+                  },
+
+                  decoration: InputDecoration(
+
+                      labelText: 'Enter Name',
+                      hintText: 'enter your name',
+                      filled: true,
+                      fillColor: Colors.grey,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius:BorderRadius.all(Radius.circular(20)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        borderRadius:BorderRadius.all(Radius.circular(20)),
+                      )
+                  ),
                 ),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(15),
-            child: TextField(
-              keyboardType: TextInputType.name,
-              obscureText: true,
-              decoration: InputDecoration(
+            child: Form(
+              key: formkey1,
+              child: TextFormField(
+                validator: (String password){
+                  if(password.isEmpty){
+                    return "Required *";
+                  }
+                },
+                keyboardType: TextInputType.name,
+                obscureText: true,
+                decoration: InputDecoration(
 
-                  labelText: 'Enter Password',
-                  hintText: 'enter your password',
-                  filled: true,
-                  fillColor: Colors.grey,
-                  suffixIcon: InkWell(
-                      child: Icon(
-                        Icons.visibility,
-                      )
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius:BorderRadius.all(Radius.circular(20)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                    borderRadius:BorderRadius.all(Radius.circular(20)),
-                  )
+                    labelText: 'Enter Password',
+                    hintText: 'enter your password',
+                    filled: true,
+                    fillColor: Colors.grey,
+                    suffixIcon: InkWell(
+                        child: Icon(
+                          Icons.visibility,
+                        )
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius:BorderRadius.all(Radius.circular(20)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius:BorderRadius.all(Radius.circular(20)),
+                    )
+                ),
               ),
             ),
           ),
-          SizedBox(height:30),
           Center(
-            child:
-            RaisedButton.icon(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Adminsuccess()));
-              },
+            child: RaisedButton.icon(onPressed: (){
+              if(formkey.currentState.validate()&&formkey1.currentState.validate()) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Adminsuccess()));
+              }
+            },
               icon: Icon(
                 Icons.login_sharp,
               ),
@@ -333,30 +336,7 @@ class _AdminloginState extends State<Adminlogin> {
               color: Colors.blue,
             ),
           ),
-          SizedBox(height:30),
-          //Row(
-            //children: [
-              //Center(
-                  //child: Text(
-                    //'Dont have an account? ',
-                    //style: TextStyle(
-                      //fontSize: 15.0,
-                      //color: Colors.grey,
-                    //  fontWeight: FontWeight.bold,
-                  //  ),
-                //  )
-              //),
-              //Center(
-                //child: RaisedButton.icon(onPressed: (){},
-                  //icon: Icon(
-                    //Icons.account_box,
-                  //),
-                  //label: Text('Sign Up'),
-                  //color: Colors.blue,
-                //),
-              //),
-            //],
-          //),
+          SizedBox(height: 30.0,),
         ],
       ),
     );
@@ -503,7 +483,13 @@ class _AdminsuccessState extends State<Adminsuccess> {
   }
 }
 
-class Outing extends StatelessWidget {
+class Outing extends StatefulWidget {
+  @override
+  _OutingState createState() => _OutingState();
+}
+
+class _OutingState extends State<Outing> {
+  String barcode = 'Unknown';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -553,7 +539,11 @@ class Outing extends StatelessWidget {
                 ),
 
                 SizedBox(height: 30),
-                RaisedButton.icon(onPressed: (){},
+
+                Text(
+                  '$barcode',
+                ),
+                RaisedButton.icon(onPressed: scanBarcode,
                   icon: Icon(Icons.arrow_forward),
                   label: Text('Out'),
                 ),
@@ -564,9 +554,29 @@ class Outing extends StatelessWidget {
       ),
     );
   }
+  Future<void> scanBarcode() async {
+    try{
+      final barcode = await FlutterBarcodeScanner.scanBarcode("#ff6666",
+        "Cancel",
+        true,
+        ScanMode.BARCODE,
+      );
+      if (!mounted) return;
+      setState(() {
+        this.barcode = barcode;
+      });
+    } on PlatformException{
+      barcode = ' Failed to get platform version';
+    }
+  }
 }
 
-class Leave extends StatelessWidget {
+class Leave extends StatefulWidget {
+  @override
+  _LeaveState createState() => _LeaveState();
+}
+
+class _LeaveState extends State<Leave> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -628,6 +638,27 @@ class Leave extends StatelessWidget {
     );
   }
 }
+
+class barcodetext extends StatefulWidget {
+  @override
+  _barcodetextState createState() => _barcodetextState();
+}
+
+class _barcodetextState extends State<barcodetext> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[850],
+      appBar: AppBar(
+        title: Text('ID Card Scanner'),
+        backgroundColor: Colors.grey[900],
+        centerTitle: true,
+        elevation: 0.0,
+      ),
+    );
+  }
+}
+
 
 
 
