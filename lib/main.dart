@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:idcardscanner/button_widget.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -8,6 +10,8 @@ void main() {
   ));
 }
 class Homepage extends StatelessWidget {
+  static final String title = 'Barcode Scanner';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -543,9 +547,9 @@ class _OutingState extends State<Outing> {
                 Text(
                   '$barcode',
                 ),
-                RaisedButton.icon(onPressed: scanBarcode,
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Out'),
+                ButtonWidget(
+                  onClicked: scanBarcode,
+                  text: 'OUT',
                 ),
               ],
             ),
@@ -639,25 +643,7 @@ class _LeaveState extends State<Leave> {
   }
 }
 
-class barcodetext extends StatefulWidget {
-  @override
-  _barcodetextState createState() => _barcodetextState();
-}
 
-class _barcodetextState extends State<barcodetext> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[850],
-      appBar: AppBar(
-        title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-    );
-  }
-}
 
 
 
