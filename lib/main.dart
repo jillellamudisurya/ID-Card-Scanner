@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/admin_login.dart';
 import 'package:idcardscanner/security_login.dart';
 
