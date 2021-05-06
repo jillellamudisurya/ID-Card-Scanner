@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:idcardscanner/admin_login.dart';
 import 'package:idcardscanner/security_login.dart';
 
-
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Homepage(),
   ));
 }
+
 class Homepage extends StatelessWidget {
   static final String title = 'Barcode Scanner';
 
@@ -19,18 +19,16 @@ class Homepage extends StatelessWidget {
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
-        title:Text('ID Card Scanner') ,
+        title: Text('ID Card Scanner'),
         centerTitle: true,
         elevation: 0.0,
       ),
-
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
             child: Text(
-                'WELCOME',
-
+              'WELCOME',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 40.0,
@@ -47,19 +45,20 @@ class Homepage extends StatelessWidget {
           ),
           Center(
             child: RaisedButton.icon(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Seclogin()));
-                },
-                icon: Icon(
-                  Icons.login,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Seclogin()));
+              },
+              icon: Icon(
+                Icons.login,
+              ),
+              label: Text(
+                'SECURITY',
+                style: TextStyle(
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                label: Text(
-                    'SECURITY',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              ),
               color: Colors.blue,
             ),
           ),
@@ -71,35 +70,23 @@ class Homepage extends StatelessWidget {
           ),
           Center(
             child: RaisedButton.icon(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Adminlogin()));
-                },
-                icon: Icon(
-                  Icons.login,
-                ),
-                label: Text(
-                      'ADMIN',
-                      style: TextStyle(
-                      fontSize: 10.0,
-                      fontWeight: FontWeight.bold,
-                )
-            ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Adminlogin()));
+              },
+              icon: Icon(
+                Icons.login,
+              ),
+              label: Text('ADMIN',
+                  style: TextStyle(
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.bold,
+                  )),
               color: Colors.blue,
-          ),
+            ),
           ),
         ],
       ),
-
     );
   }
 }
-
-
-
-
-
-
-
-
-
-

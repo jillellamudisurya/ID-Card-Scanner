@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "131474175272",
+    "project_id": "id-card-scanner-b383c",
+    "storage_bucket": "id-card-scanner-b383c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131474175272:android:0d5a69c64c465fdaeb8c1d",
+        "android_client_info": {
+          "package_name": "com.example.idcardscanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131474175272-rsdcpesrkluat0chsvc60fsvlgu0nfj7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCebA40QOeJcJVwifn78xULG_0ONLQbfxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131474175272-rsdcpesrkluat0chsvc60fsvlgu0nfj7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
