@@ -111,6 +111,7 @@ class _AdminloginState extends State<Adminlogin> {
                               child: Form(
                                 key: formkey1,
                                 child: TextFormField(
+                                  obscureText: true,
                                   validator: (String name) {
                                     if (name.isEmpty) {
                                       return "Required *";

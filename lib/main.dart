@@ -16,76 +16,82 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         title: Text('ID Card Scanner'),
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Center(
-            child: Text(
-              'WELCOME',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-                letterSpacing: 2.0,
-                color: Colors.white,
+
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                colors: [Colors.black, Colors.grey, Colors.black])),
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/adminsecurity.jpg'),
+                radius: 60.0,
               ),
             ),
-          ),
-          Center(
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/image.jpg'),
-              radius: 60.0,
+            SizedBox(
+              height: 20,
             ),
-          ),
-          Center(
-            child: RaisedButton.icon(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Seclogin()));
-              },
-              icon: Icon(
-                Icons.login,
-              ),
-              label: Text(
-                'SECURITY',
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.bold,
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Seclogin()));
+                },
+                icon: Icon(
+                  Icons.login,
                 ),
-              ),
-              color: Colors.blue,
-            ),
-          ),
-          Center(
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/image.jpg'),
-              radius: 60.0,
-            ),
-          ),
-          Center(
-            child: RaisedButton.icon(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Adminlogin()));
-              },
-              icon: Icon(
-                Icons.login,
-              ),
-              label: Text('ADMIN',
+                label: Text(
+                  'SECURITY',
                   style: TextStyle(
                     fontSize: 10.0,
                     fontWeight: FontWeight.bold,
-                  )),
-              color: Colors.blue,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 70,
+            ),
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/adminsecurity.jpg'),
+                radius: 60.0,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Adminlogin()));
+                },
+                icon: Icon(
+                  Icons.login,
+                ),
+                label: Text('ADMIN',
+                    style: TextStyle(
+                      fontSize: 10.0,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
