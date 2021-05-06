@@ -17,113 +17,142 @@ class _SecloginState extends State<Seclogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
         backgroundColor: Colors.grey[900],
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Column(
-        children: [
-          SizedBox(height:30.0),
-          Center(
-              child: Text(
-                'SECURITY LOGIN',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                  color: Colors.white,
-                ),
-              )
-          ),
-          SizedBox(height: 30.0),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Center(
-              child: Form(
-
-                key: formkey,
-                child: TextFormField(
-
-                  keyboardType: TextInputType.name,
-                  obscureText: true,
-
-                  validator: (String name){
-                    if(name.isEmpty){
-                      return "Required *";
-                    }
-                  },
-
-                  decoration: InputDecoration(
-
-                      labelText: 'Enter Name',
-                      hintText: 'enter your name',
-                      filled: true,
-                      fillColor: Colors.grey,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius:BorderRadius.all(Radius.circular(20)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                        borderRadius:BorderRadius.all(Radius.circular(20)),
-                      )
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Colors.black,
+              Colors.grey,
+              Colors.black
+            ]
+          )
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 10,),
+            Padding(
+                padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Text(
+                      'LOGIN',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Form(
-              key: formkey1,
-              child: TextFormField(
-                validator: (String password){
-                  if(password.isEmpty){
-                    return "Required *";
-                  }
-                },
-                keyboardType: TextInputType.name,
-                obscureText: true,
-                decoration: InputDecoration(
-
-                    labelText: 'Enter Password',
-                    hintText: 'enter your password',
-                    filled: true,
-                    fillColor: Colors.grey,
-                    suffixIcon: InkWell(
-                        child: Icon(
-                          Icons.visibility,
+            SizedBox(height: 20,),
+            Expanded(
+                child:Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(60),topRight: Radius.circular(60),bottomLeft: Radius.circular(60),bottomRight: Radius.circular(60))
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 10,),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[600],
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(225, 95, 27, 13),
+                                blurRadius: 20,
+                                offset: Offset(0,10)
+                              )
+                            ]
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(color: Colors.grey[200]))
+                                ),
+                                child: Form(
+                                  key: formkey,
+                                  child: TextFormField(
+                                    validator: (String name){
+                                      if(name.isEmpty){
+                                        return "Required *";
+                                      }
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter Your Name',
+                                      hintStyle: TextStyle(color: Colors.white),
+                                      border: InputBorder.none
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                    border: Border(bottom: BorderSide(color: Colors.grey[200]))
+                                ),
+                                child: Form(
+                                  key: formkey1,
+                                  child: TextFormField(
+                                    obscureText: true,
+                                    validator: (String name){
+                                      if(name.isEmpty){
+                                        return "Required *";
+                                      }
+                                    },
+                                    decoration: InputDecoration(
+                                        hintText: 'Enter Your Password',
+                                        hintStyle: TextStyle(color: Colors.white),
+                                        border: InputBorder.none
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Center(
+                          child:ElevatedButton.icon(
+                            onPressed: () {
+                              if (formkey.currentState.validate() &&
+                                  formkey1.currentState.validate()) {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Secsuccess()));
+                              }
+                            },
+                            icon: Icon(
+                              Icons.login,
+                            ),
+                            label: Text(
+                              'LOGIN',
+                              style: TextStyle(
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         )
+                      ],
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius:BorderRadius.all(Radius.circular(20)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                      borderRadius:BorderRadius.all(Radius.circular(20)),
-                    )
-                ),
-              ),
-            ),
-          ),
-          Center(
-            child: RaisedButton.icon(onPressed: (){
-              if(formkey.currentState.validate()&&formkey1.currentState.validate()) {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Secsuccess()));
-              }
-            },
-              icon: Icon(
-                Icons.login_sharp,
-              ),
-              label: Text('Login'),
-              color: Colors.blue,
-            ),
-          ),
-          SizedBox(height: 30.0,),
-        ],
+                  ),
+                )
+            )
+          ],
+        )
       ),
     );
   }
