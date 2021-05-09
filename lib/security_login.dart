@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/security_success.dart';
 import 'package:idcardscanner/auth.dart';
 import 'package:idcardscanner/error.dart';
+import 'package:idcardscanner/login_alert.dart';
+
 
 class Seclogin extends StatefulWidget {
   @override
@@ -148,10 +151,13 @@ class _SecloginState extends State<Seclogin> {
                                     MaterialPageRoute(
                                         builder: (context) => Secsuccess()));
                               } else {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Error()));
+                               // Navigator.push(
+                                 //   context,
+                                   // MaterialPageRoute(
+                                     //   builder: (context) => Error()));
+
+                                  final action = await AlertDialogs.okDialog(context, 'Incorrect Details', 'Enter valid Details');
+
                               }
                             }
                           },
