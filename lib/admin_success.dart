@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/auth.dart';
+import 'package:idcardscanner/error.dart';
+
 
 class Adminsuccess extends StatefulWidget {
   @override
@@ -7,6 +9,7 @@ class Adminsuccess extends StatefulWidget {
 }
 
 class _AdminsuccessState extends State<Adminsuccess> {
+  String title = 'AlertDialog2';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +22,19 @@ class _AdminsuccessState extends State<Adminsuccess> {
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () async {
-                await AuthService().signout();
+                final action = await AlertDialogs2.yesCancelDialog(context, 'Logout', 'Are You Sure ?');
               },
-              icon: Icon(Icons.person),
-              label: Text('Signout'))
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              label: Text(
+                'Signout',
+                style: TextStyle(
+                    fontSize: 15.0,
+                    color: Colors.white,
+                    backgroundColor: Colors.black),
+              ))
         ],
       ),
       body: Container(

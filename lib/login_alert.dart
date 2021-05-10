@@ -21,7 +21,7 @@ class AlertDialogs {
                   child: Text(
                     'OK',
                     style: TextStyle(
-                      fontSize: 10.0,
+                      fontSize: 20.0,
                     ),
                   ))
             ],
