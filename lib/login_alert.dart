@@ -8,7 +8,7 @@ class AlertDialogs {
     String title,
     String body,
   ) async {
-    final action = await showDialog(
+    return await showDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {

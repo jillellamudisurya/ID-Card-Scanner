@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:idcardscanner/auth.dart';
 
 class Adminsuccess extends StatefulWidget {
   @override
@@ -16,18 +16,20 @@ class _AdminsuccessState extends State<Adminsuccess> {
         backgroundColor: Colors.grey[900],
         centerTitle: true,
         elevation: 0.0,
+        actions: <Widget>[
+          FlatButton.icon(
+              onPressed: () async {
+                await AuthService().signout();
+              },
+              icon: Icon(Icons.person),
+              label: Text('Signout'))
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [
-              Colors.black,
-              Colors.grey,
-              Colors.black
-            ]
-          )
-        ),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [Colors.black, Colors.grey, Colors.black])),
         child: Column(
           children: [
             SizedBox(height: 30),
@@ -51,22 +53,20 @@ class _AdminsuccessState extends State<Adminsuccess> {
                     backgroundImage: AssetImage('assets/image.jpg'),
                     radius: 50.0,
                   ),
-
                   SizedBox(height: 30),
-
-                  RaisedButton.icon(onPressed: (){},
+                  ElevatedButton.icon(
+                    onPressed: () {},
                     icon: Icon(Icons.stacked_bar_chart),
                     label: Text('Outing Statistics'),
                   ),
                   SizedBox(height: 30),
-
                   CircleAvatar(
                     backgroundImage: AssetImage('assets/image.jpg'),
                     radius: 50.0,
                   ),
-
                   SizedBox(height: 30),
-                  RaisedButton.icon(onPressed: (){},
+                  ElevatedButton.icon(
+                    onPressed: () {},
                     icon: Icon(Icons.stacked_bar_chart),
                     label: Text('Leave Statistics'),
                   ),
@@ -76,7 +76,6 @@ class _AdminsuccessState extends State<Adminsuccess> {
           ],
         ),
       ),
-
     );
   }
 }

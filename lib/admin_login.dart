@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/admin_success.dart';
 import 'package:idcardscanner/auth.dart';
-import 'package:idcardscanner/error.dart';
-import 'package:idcardscanner/login_alert.dart';
+import 'package:idcardscanner/checkAdmin.dart';
+import 'package:idcardscanner/security_success.dart';
 
 class Adminlogin extends StatefulWidget {
   @override
@@ -95,6 +94,7 @@ class _AdminloginState extends State<Adminlogin> {
                                       return "Required *";
                                     } else {
                                       email = name;
+                                      return null;
                                     }
                                   },
                                   decoration: InputDecoration(
@@ -119,6 +119,7 @@ class _AdminloginState extends State<Adminlogin> {
                                       return "Required *";
                                     } else {
                                       password = name;
+                                      return null;
                                     }
                                   },
                                   decoration: InputDecoration(
@@ -141,15 +142,14 @@ class _AdminloginState extends State<Adminlogin> {
                                 formkey1.currentState.validate()) {
                               dynamic result =
                                   await _auth.signIn(email, password);
-                              if (result == '6V3TnlrRYxapw5HGOIqF14hG9tV2' ||
-                                  result == 'AnfgPz6iHJPJZvFY0QPDaX42vG12') {
+                              if (checkAdmin().isAdmin(result)) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Adminsuccess()));
                               } else {
-                                
-                                  final action = await AlertDialogs.okDialog(context, 'Incorrect Details', 'Enter valid Details');
+                                await AlertDialogs.okDialog(context,
+                                    'Incorrect Details', 'Enter valid Details');
                               }
                             }
                           },

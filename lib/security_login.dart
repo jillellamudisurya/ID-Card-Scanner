@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/security_success.dart';
 import 'package:idcardscanner/auth.dart';
-import 'package:idcardscanner/error.dart';
-import 'package:idcardscanner/login_alert.dart';
-
+import 'package:idcardscanner/checkAdmin.dart';
 
 class Seclogin extends StatefulWidget {
   @override
@@ -96,6 +93,7 @@ class _SecloginState extends State<Seclogin> {
                                       return "Required *";
                                     } else {
                                       email = name;
+                                      return null;
                                     }
                                   },
                                   decoration: InputDecoration(
@@ -120,6 +118,7 @@ class _SecloginState extends State<Seclogin> {
                                       return "Required *";
                                     } else {
                                       password = name;
+                                      return null;
                                     }
                                   },
                                   decoration: InputDecoration(
@@ -143,21 +142,19 @@ class _SecloginState extends State<Seclogin> {
                               dynamic result =
                                   await _auth.signIn(email, password);
                               if ((result != null) &&
-                                  !(result == '6V3TnlrRYxapw5HGOIqF14hG9tV2' ||
-                                      result ==
-                                          'AnfgPz6iHJPJZvFY0QPDaX42vG12')) {
+                                  !checkAdmin().isAdmin(result)) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Secsuccess()));
                               } else {
-                               // Navigator.push(
-                                 //   context,
-                                   // MaterialPageRoute(
-                                     //   builder: (context) => Error()));
+                                // Navigator.push(
+                                //   context,
+                                // MaterialPageRoute(
+                                //   builder: (context) => Error()));
 
-                                  final action = await AlertDialogs.okDialog(context, 'Incorrect Details', 'Enter valid Details');
-
+                                await AlertDialogs.okDialog(context,
+                                    'Incorrect Details', 'Enter valid Details');
                               }
                             }
                           },
