@@ -143,10 +143,11 @@ class _SecloginState extends State<Seclogin> {
                                   await _auth.signIn(email, password);
                               if ((result != null) &&
                                   !checkAdmin().isAdmin(result)) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Secsuccess()));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => Secsuccess()));
+                                Navigator.pop(context);
                               } else {
                                 // Navigator.push(
                                 //   context,

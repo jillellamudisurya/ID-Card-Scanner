@@ -3,7 +3,6 @@ import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/admin_success.dart';
 import 'package:idcardscanner/auth.dart';
 import 'package:idcardscanner/checkAdmin.dart';
-import 'package:idcardscanner/security_success.dart';
 
 class Adminlogin extends StatefulWidget {
   @override
@@ -143,10 +142,11 @@ class _AdminloginState extends State<Adminlogin> {
                               dynamic result =
                                   await _auth.signIn(email, password);
                               if (checkAdmin().isAdmin(result)) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Adminsuccess()));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => Adminsuccess()));
+                                Navigator.pop(context);
                               } else {
                                 await AlertDialogs.okDialog(context,
                                     'Incorrect Details', 'Enter valid Details');
