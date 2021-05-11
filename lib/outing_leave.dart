@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/button_widget.dart';
+import 'package:idcardscanner/database.dart';
+import 'package:idcardscanner/scanError.dart';
 
 class Outing extends StatefulWidget {
   @override
@@ -9,7 +11,8 @@ class Outing extends StatefulWidget {
 }
 
 class _OutingState extends State<Outing> {
-  String barcode = 'Unknown';
+  String barcode = '-1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +26,9 @@ class _OutingState extends State<Outing> {
 
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [
-              Colors.black,
-              Colors.grey,
-              Colors.black
-            ]
-          )
-        ),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [Colors.black, Colors.grey, Colors.black])),
         child: Column(
           children: [
             SizedBox(height: 30),
@@ -58,15 +55,15 @@ class _OutingState extends State<Outing> {
 
                   SizedBox(height: 30),
 
-                  Text(
-                    '$barcode',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.grey,
-                    ),
-                  ),
+                  // Text(
+                  //   '$barcode',
+                  //   style: TextStyle(
+                  //     fontSize: 24,
+                  //     color: Colors.grey,
+                  //   ),
+                  // ),
                   ButtonWidget(
-                    onClicked: scanBarcode,
+                    onClicked: scanBarcodeOut,
                     text: 'OUT',
                   ),
                   SizedBox(height: 30),
@@ -78,15 +75,15 @@ class _OutingState extends State<Outing> {
 
                   SizedBox(height: 30),
 
-                  Text(
-                    '$barcode',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.grey,
-                    ),
-                  ),
+                  // Text(
+                  //   '$barcode',
+                  //   style: TextStyle(
+                  //     fontSize: 24,
+                  //     color: Colors.grey,
+                  //   ),
+                  // ),
                   ButtonWidget(
-                    onClicked: scanBarcode,
+                    onClicked: scanBarcodeIn,
                     text: 'IN',
                   ),
                 ],
@@ -97,18 +94,47 @@ class _OutingState extends State<Outing> {
       ),
     );
   }
-  Future<void> scanBarcode() async {
-    try{
-      final barcode = await FlutterBarcodeScanner.scanBarcode("#ff6666",
+
+  Future<void> scanBarcodeOut() async {
+    try {
+      final barcode = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666",
         "Cancel",
         true,
         ScanMode.BARCODE,
       );
       if (!mounted) return;
       setState(() {
-        this.barcode = barcode;
+        if (barcode != '-1') {
+          DatabaseService().outing(barcode, 'Out');
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ScanError()));
+        }
       });
-    } on PlatformException{
+    } on PlatformException {
+      barcode = ' Failed to get platform version';
+    }
+  }
+
+  Future<void> scanBarcodeIn() async {
+    try {
+      final barcode = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666",
+        "Cancel",
+        true,
+        ScanMode.BARCODE,
+      );
+      if (!mounted) return;
+      setState(() {
+        if (barcode != '-1') {
+          DatabaseService().outing(barcode, 'In');
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ScanError()));
+        }
+      });
+    } on PlatformException {
       barcode = ' Failed to get platform version';
     }
   }
@@ -131,7 +157,6 @@ class _LeaveState extends State<Leave> {
         centerTitle: true,
         elevation: 0.0,
       ),
-
       body: Column(
         children: [
           SizedBox(height: 30),
@@ -155,37 +180,33 @@ class _LeaveState extends State<Leave> {
                   backgroundImage: AssetImage('assets/image.jpg'),
                   radius: 50.0,
                 ),
-
                 SizedBox(height: 30),
-
-                Text(
-                  '$barcode',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey,
-                  ),
-                ),
+                // Text(
+                //   '$barcode',
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     color: Colors.grey,
+                //   ),
+                // ),
                 ButtonWidget(
-                  onClicked: scanBarcode,
+                  onClicked: scanBarcodeLeaveOut,
                   text: 'OUT',
                 ),
                 SizedBox(height: 30),
-
                 CircleAvatar(
                   backgroundImage: AssetImage('assets/image.jpg'),
                   radius: 50.0,
                 ),
-
                 SizedBox(height: 30),
-                Text(
-                  '$barcode',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey,
-                  ),
-                ),
+                // Text(
+                //   '$barcode',
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     color: Colors.grey,
+                //   ),
+                // ),
                 ButtonWidget(
-                  onClicked: scanBarcode,
+                  onClicked: scanBarcodeLeaveIn,
                   text: 'IN',
                 ),
               ],
@@ -195,18 +216,47 @@ class _LeaveState extends State<Leave> {
       ),
     );
   }
-  Future<void> scanBarcode() async {
-    try{
-      final barcode = await FlutterBarcodeScanner.scanBarcode("#ff6666",
+
+  Future<void> scanBarcodeLeaveOut() async {
+    try {
+      final barcode = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666",
         "Cancel",
         true,
         ScanMode.BARCODE,
       );
       if (!mounted) return;
       setState(() {
-        this.barcode = barcode;
+        if (barcode != '-1') {
+          DatabaseService().leave(barcode, 'Out');
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ScanError()));
+        }
       });
-    } on PlatformException{
+    } on PlatformException {
+      barcode = ' Failed to get platform version';
+    }
+  }
+
+  Future<void> scanBarcodeLeaveIn() async {
+    try {
+      final barcode = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666",
+        "Cancel",
+        true,
+        ScanMode.BARCODE,
+      );
+      if (!mounted) return;
+      setState(() {
+        if (barcode != '-1') {
+          DatabaseService().leave(barcode, 'In');
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ScanError()));
+        }
+      });
+    } on PlatformException {
       barcode = ' Failed to get platform version';
     }
   }

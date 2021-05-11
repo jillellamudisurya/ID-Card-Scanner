@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/auth.dart';
 import 'package:idcardscanner/error.dart';
-
 
 class Adminsuccess extends StatefulWidget {
   @override
@@ -22,7 +20,8 @@ class _AdminsuccessState extends State<Adminsuccess> {
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () async {
-                final action = await AlertDialogs2.yesCancelDialog(context, 'Logout', 'Are You Sure ?');
+                final action = await AlertDialogs2.yesCancelDialog(
+                    context, 'Logout', 'Are You Sure ?');
               },
               icon: Icon(
                 Icons.person,

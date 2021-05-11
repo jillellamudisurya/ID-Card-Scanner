@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:idcardscanner/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String _userFromFB(FirebaseUser user) {
-    return user != null ? user.uid : null;
+  User _userFromFB(FirebaseUser user) {
+    return user != null ? new User(uid: user.uid) : null;
   }
 
-  Stream<String> get user {
+  Stream<User> get user {
     return _auth.onAuthStateChanged.map(_userFromFB);
   }
 

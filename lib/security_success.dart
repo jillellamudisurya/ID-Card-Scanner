@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/auth.dart';
 import 'package:idcardscanner/outing_leave.dart';
 import 'package:idcardscanner/error.dart';
 
@@ -21,17 +20,20 @@ class _SecsuccessState extends State<Secsuccess> {
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () async {
-                final action = await AlertDialogs2.yesCancelDialog(context, 'Logout', 'Are You Sure ?');
+                final action = await AlertDialogs2.yesCancelDialog(
+                    context, 'Logout', 'Are You Sure ?');
               },
-              icon: Icon(Icons.person,color: Colors.white,),
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
               label: Text(
                 'Signout',
                 style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.white,
                     backgroundColor: Colors.black),
-                    )
-                    )
+              ))
         ],
       ),
       body: Container(
