@@ -150,7 +150,7 @@ class _LeaveState extends State<Leave> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
         backgroundColor: Colors.grey[900],
