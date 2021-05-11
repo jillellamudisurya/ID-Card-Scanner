@@ -124,7 +124,7 @@ class _LeaveState extends State<Leave> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
         backgroundColor: Colors.grey[900],
@@ -132,66 +132,78 @@ class _LeaveState extends State<Leave> {
         elevation: 0.0,
       ),
 
-      body: Column(
-        children: [
-          SizedBox(height: 30),
-          Center(
-            child: Text(
-              'LEAVE',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30.0,
-                color: Colors.white,
-                letterSpacing: 2.0,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Colors.black,
+              Colors.grey,
+              Colors.black
+            ]
+          )
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            Center(
+              child: Text(
+                'LEAVE',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                  color: Colors.white,
+                  letterSpacing: 2.0,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 30),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/image.jpg'),
-                  radius: 50.0,
-                ),
-
-                SizedBox(height: 30),
-
-                Text(
-                  '$barcode',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey,
+            SizedBox(height: 30),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/image.jpg'),
+                    radius: 50.0,
                   ),
-                ),
-                ButtonWidget(
-                  onClicked: scanBarcode,
-                  text: 'OUT',
-                ),
-                SizedBox(height: 30),
 
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/image.jpg'),
-                  radius: 50.0,
-                ),
+                  SizedBox(height: 30),
 
-                SizedBox(height: 30),
-                Text(
-                  '$barcode',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey,
+                  Text(
+                    '$barcode',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-                ButtonWidget(
-                  onClicked: scanBarcode,
-                  text: 'IN',
-                ),
-              ],
-            ),
-          )
-        ],
+                  ButtonWidget(
+                    onClicked: scanBarcode,
+                    text: 'OUT',
+                  ),
+                  SizedBox(height: 30),
+
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/image.jpg'),
+                    radius: 50.0,
+                  ),
+
+                  SizedBox(height: 30),
+                  Text(
+                    '$barcode',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  ButtonWidget(
+                    onClicked: scanBarcode,
+                    text: 'IN',
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
