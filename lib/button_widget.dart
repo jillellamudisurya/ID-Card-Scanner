@@ -14,17 +14,23 @@ class ButtonWidget extends StatelessWidget {
       ):super(key: key);
 
   @override
-  Widget build(BuildContext context) => RaisedButton(
+  Widget build(BuildContext context) =>ElevatedButton(
     child: Text(
       text,
       style: TextStyle(
         fontSize: 24
       ),
     ),
-    shape: StadiumBorder(),
-    color: Theme.of(context).primaryColor,
-    padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-    textColor: Colors.white,
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.pressed))
+          return Theme.of(context).colorScheme.primary.withBlue(10);
+        return null; // Use the component's default.
+      },
+    ), 
+    ),
+    
     onPressed: onClicked,
   );
 }

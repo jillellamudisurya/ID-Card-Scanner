@@ -17,7 +17,7 @@ class AlertDialogs2 {
             title: Text(title),
             content: Text(body),
             actions: [
-              FlatButton(
+              TextButton(
                   onPressed: () async {
                     await AuthService().signout();
                     Navigator.of(context).pop(DialogsAction.yes);
@@ -28,7 +28,7 @@ class AlertDialogs2 {
                       fontSize: 15.0,
                     ),
                   )),
-              FlatButton(
+              TextButton(
                   onPressed: () =>
                       Navigator.of(context).pop(DialogsAction.cancel),
                   child: Text(

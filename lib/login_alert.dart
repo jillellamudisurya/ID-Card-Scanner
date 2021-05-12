@@ -16,7 +16,7 @@ class AlertDialogs {
             title: Text(title),
             content: Text(body),
             actions: [
-              FlatButton(
+              TextButton(
                   onPressed: () => Navigator.of(context).pop(DialogsAction.ok),
                   child: Text(
                     'OK',

@@ -18,10 +18,10 @@ class _AdminsuccessState extends State<Adminsuccess> {
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
-          FlatButton.icon(
+          TextButton.icon(
               onPressed: () async {
-                final action = await AlertDialogs2.yesCancelDialog(
-                    context, 'Logout', 'Are You Sure ?');
+                 await AlertDialogs2.yesCancelDialog(
+                    context, 'Sign Out', 'Are You Sure ?');
               },
               icon: Icon(
                 Icons.person,
