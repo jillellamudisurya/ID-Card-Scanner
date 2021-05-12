@@ -4,6 +4,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/scanError.dart';
+import 'package:idcardscanner/login_alert.dart';
 
 class Leave extends StatefulWidget {
   @override
@@ -97,12 +98,14 @@ class _LeaveState extends State<Leave> {
         ScanMode.BARCODE,
       );
       if (!mounted) return;
-      setState(() {
+      setState(() async{
         if (barcode != '-1') {
           DatabaseService().leave(barcode, 'Out');
         } else {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ScanError()));
+          await AlertDialogs.okDialog(
+                                          context,
+                                          'Scan Error',
+                                          'Please Scan Barcode');
         }
       });
     } on PlatformException {
@@ -119,12 +122,14 @@ class _LeaveState extends State<Leave> {
         ScanMode.BARCODE,
       );
       if (!mounted) return;
-      setState(() {
+      setState(() async{
         if (barcode != '-1') {
           DatabaseService().leave(barcode, 'In');
         } else {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ScanError()));
+          await AlertDialogs.okDialog(
+                                          context,
+                                          'Scan Error',
+                                          'Please Scan Barcode');
         }
       });
     } on PlatformException {
