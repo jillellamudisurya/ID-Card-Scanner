@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/outing_leave.dart';
+import 'package:idcardscanner/outing.dart';
+import 'package:idcardscanner/leave.dart';
 import 'package:idcardscanner/error.dart';
 
 class Secsuccess extends StatefulWidget {

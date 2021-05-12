@@ -4,6 +4,7 @@ import 'package:idcardscanner/user.dart';
 import 'package:idcardscanner/wrapper.dart';
 import 'package:provider/provider.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
