@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/database.dart';
-import 'package:idcardscanner/scanError.dart';
 import 'package:idcardscanner/login_alert.dart';
 
 class Outing extends StatefulWidget {
