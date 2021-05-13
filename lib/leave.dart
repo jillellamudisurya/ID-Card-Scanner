@@ -4,6 +4,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/login_alert.dart';
+import 'package:idcardscanner/barcode_result.dart';
 
 class Leave extends StatefulWidget {
   @override
@@ -100,6 +101,9 @@ class _LeaveState extends State<Leave> {
       setState(() async{
         if (barcode != '-1') {
           DatabaseService().leave(barcode, 'Out');
+          BarcodeResult a = BarcodeResult();
+          a.result=barcode;
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
         } else {
           await AlertDialogs.okDialog(
                                           context,
@@ -124,6 +128,9 @@ class _LeaveState extends State<Leave> {
       setState(() async{
         if (barcode != '-1') {
           DatabaseService().leave(barcode, 'In');
+          BarcodeResult a = BarcodeResult();
+          a.result=barcode;
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
         } else {
           await AlertDialogs.okDialog(
                                           context,

@@ -4,14 +4,21 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/login_alert.dart';
+import 'package:idcardscanner/barcode_result.dart';
+import 'package:provider/provider.dart';
+import 'package:idcardscanner/main.dart';
+import 'package:idcardscanner/barcode_result.dart';
 
+String barcode = '-1';
 class Outing extends StatefulWidget {
   @override
   _OutingState createState() => _OutingState();
 }
 
 class _OutingState extends State<Outing> {
-  String barcode = '-1';
+  
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +113,11 @@ class _OutingState extends State<Outing> {
       if (!mounted) return;
       setState(() async{
         if (barcode != '-1') {
+          
           DatabaseService().outing(barcode, 'Out');
+          BarcodeResult a = BarcodeResult();
+          a.result=barcode;
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
         } else {
           await AlertDialogs.okDialog(
                                           context,
@@ -131,6 +142,9 @@ class _OutingState extends State<Outing> {
       setState(() async{
         if (barcode != '-1') {
           DatabaseService().outing(barcode, 'In');
+          BarcodeResult a = BarcodeResult();
+          a.result=barcode;
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
         } else {
           await AlertDialogs.okDialog(
                                           context,
