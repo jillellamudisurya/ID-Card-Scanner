@@ -45,6 +45,16 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.8.1
 
+  flutter_native_splash: ^0.2.8
+
+flutter_native_splash:
+  color : "#ffffff"
+  image : assets/icon.png
+  color_dark : "#000000"
+  image_dark :  assets/light_icon.png
+  android : true
+  android_gravity : fill
+  
 flutter_icons:
   android: true
   image_path: "assets/icon.png"
