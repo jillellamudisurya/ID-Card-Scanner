@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:idcardscanner/outing.dart';
-import 'package:idcardscanner/leave.dart';
 
-
+// ignore: must_be_immutable
 class BarcodeResult extends StatelessWidget {
+
   String result='';
   @override
   Widget build(BuildContext context) {
@@ -53,7 +51,18 @@ class BarcodeResult extends StatelessWidget {
               fontSize: 30.0,
               )
             )
-            )
+            ),
+            SizedBox(height:30.0),
+            Center(
+              child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      
+                    },
+                    icon: Icon(Icons.home),
+                    label: Text('HOME'),
+                  ),
+                )
         ],
         ),
       ),

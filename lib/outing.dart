@@ -5,9 +5,7 @@ import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/barcode_result.dart';
-import 'package:provider/provider.dart';
-import 'package:idcardscanner/main.dart';
-import 'package:idcardscanner/barcode_result.dart';
+
 
 String barcode = '-1';
 class Outing extends StatefulWidget {
@@ -117,6 +115,7 @@ class _OutingState extends State<Outing> {
           DatabaseService().outing(barcode, 'Out');
           BarcodeResult a = BarcodeResult();
           a.result=barcode;
+          
           Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
         } else {
           await AlertDialogs.okDialog(
@@ -144,6 +143,7 @@ class _OutingState extends State<Outing> {
           DatabaseService().outing(barcode, 'In');
           BarcodeResult a = BarcodeResult();
           a.result=barcode;
+          
           Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
         } else {
           await AlertDialogs.okDialog(
