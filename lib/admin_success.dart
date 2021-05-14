@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/error.dart';
+import 'package:idcardscanner/LeaveStats.dart';
+import 'package:idcardscanner/OutingStats.dart';
 
 class Adminsuccess extends StatefulWidget {
   @override
@@ -61,23 +63,27 @@ class _AdminsuccessState extends State<Adminsuccess> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/image.jpg'),
+                    backgroundImage: AssetImage('assets/stats.png'),
                     radius: 50.0,
                   ),
                   SizedBox(height: 30),
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>OutingStats()));
+                    },
                     icon: Icon(Icons.stacked_bar_chart),
                     label: Text('Outing Statistics'),
                   ),
                   SizedBox(height: 30),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/image.jpg'),
+                    backgroundImage: AssetImage('assets/stats.png'),
                     radius: 50.0,
                   ),
                   SizedBox(height: 30),
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>LeaveStats()));
+                    },
                     icon: Icon(Icons.stacked_bar_chart),
                     label: Text('Leave Statistics'),
                   ),
