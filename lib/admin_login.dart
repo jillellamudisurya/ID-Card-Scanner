@@ -46,7 +46,18 @@ class _AdminloginState extends State<Adminlogin> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 160),
+                        SizedBox(height: 130),
+                        Text(
+                          "ADMIN",
+                          style: TextStyle(
+                              color: Colors.blue[900],
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 15),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "LOGIN",
                           style: TextStyle(
