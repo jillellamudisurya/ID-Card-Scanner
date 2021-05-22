@@ -22,168 +22,196 @@ class _AdminloginState extends State<Adminlogin> {
     return isLoad
         ? Loading()
         : Scaffold(
-            //backgroundColor: Colors.grey[850],
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              title: Text('ID Card Scanner'),
-              backgroundColor: Colors.grey[900],
+              backgroundColor: Colors.black,
+              elevation: 0,
               centerTitle: true,
-              elevation: 0.0,
+              title: Text("ID card Scanner"),
             ),
             body: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        colors: [Colors.black, Colors.grey, Colors.black])),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xfd3cce3), Color(0xfE9E4F0)],
+                ),
+              ),
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: SafeArea(
                 child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          Text(
-                            'LOGIN',
-                            style: TextStyle(fontSize: 30, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Expanded(
-                        child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(60),
-                              topRight: Radius.circular(60),
-                              bottomLeft: Radius.circular(60),
-                              bottomRight: Radius.circular(60))),
-                      child: Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[600],
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color.fromARGB(225, 95, 27, 13),
-                                        blurRadius: 20,
-                                        offset: Offset(0, 10))
-                                  ]),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: Colors.grey[200]))),
-                                    child: Form(
-                                      key: formkey,
-                                      child: TextFormField(
-                                        validator: (String name) {
-                                          if (name.isEmpty) {
-                                            return "Required *";
-                                          } else {
-                                            email = name;
-                                            return null;
-                                          }
-                                        },
-                                        decoration: InputDecoration(
-                                            hintText: 'Enter Your Name',
-                                            hintStyle:
-                                                TextStyle(color: Colors.white),
-                                            border: InputBorder.none),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: Colors.grey[200]))),
-                                    child: Form(
-                                      key: formkey1,
-                                      child: TextFormField(
-                                        obscureText: true,
-                                        validator: (String name) {
-                                          if (name.isEmpty) {
-                                            return "Required *";
-                                          } else {
-                                            password = name;
-                                            return null;
-                                          }
-                                        },
-                                        decoration: InputDecoration(
-                                            hintText: 'Enter Your Password',
-                                            hintStyle:
-                                                TextStyle(color: Colors.white),
-                                            border: InputBorder.none),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Center(
-                              child: ElevatedButton.icon(
-                                onPressed: () async {
-                                  if (formkey.currentState.validate() &&
-                                      formkey1.currentState.validate()) {
-                                    setState(() {
-                                      isLoad = true;
-                                    });
-                                    dynamic result =
-                                        await _auth.signIn(email, password);
-                                    if (CheckAdmin().isAdmin(result)) {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) => Adminsuccess()));
-                                      Navigator.pop(context);
-                                    } else {
-                                      setState(() {
-                                        isLoad = false;
-                                      });
-                                      await AlertDialogs.okDialog(
-                                          context,
-                                          'Incorrect Details',
-                                          'Enter valid Details');
-                                    }
-                                  }
-                                },
-                                icon: Icon(
-                                  Icons.login,
-                                ),
-                                label: Text(
-                                  'LOGIN',
-                                  style: TextStyle(
-                                    fontSize: 10.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(height: 160),
+                        Text(
+                          "LOGIN",
+                          style: TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 5),
                         ),
-                      ),
-                    ))
+                      ],
+                    ),
+                    SizedBox(height: 30),
+                    Column(
+                      children: <Widget>[
+                        Theme(
+                          child: Form(
+                            key: formkey,
+                            child: TextFormField(
+                              validator: (String name) {
+                                if (name.isEmpty) {
+                                  return "Required *";
+                                } else {
+                                  email = name;
+                                  return null;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.email),
+                                labelText: "Email ID",
+                                labelStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey.shade400),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade300,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.red,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          data: Theme.of(context)
+                              .copyWith(primaryColor: Color(0xffff5f6d)),
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Theme(
+                          child: Form(
+                            key: formkey1,
+                            child: TextFormField(
+                              obscureText: true,
+                              validator: (String name) {
+                                if (name.isEmpty) {
+                                  return "Required *";
+                                } else {
+                                  password = name;
+                                  return null;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.lock),
+                                labelText: "Password",
+                                labelStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey.shade400),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade300,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.red,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          data: Theme.of(context)
+                              .copyWith(primaryColor: Color(0xffff5f6d)),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                          height: 50,
+                          width: double.infinity,
+                          child: TextButton(
+                            onPressed: () async {
+                              if (formkey.currentState.validate() &&
+                                  formkey1.currentState.validate()) {
+                                setState(() {
+                                  isLoad = true;
+                                });
+                                dynamic result =
+                                    await _auth.signIn(email, password);
+
+                                if ((result != null) &&
+                                    CheckAdmin().isAdmin(result)) {
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Secsuccess()));
+
+                                  Navigator.pop(context);
+                                } else {
+                                  // Navigator.push(
+                                  //   context,
+                                  // MaterialPageRoute(
+                                  //   builder: (context) => Error()));
+
+                                  setState(() {
+                                    isLoad = false;
+                                  });
+                                  await AlertDialogs.okDialog(
+                                      context,
+                                      'Incorrect Details',
+                                      'Enter valid Details');
+                                }
+                              }
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.all(0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Color(0xffff5f6d),
+                                    Color(0xffff5f6d),
+                                    Color(0xffffc371),
+                                  ],
+                                ),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                constraints: BoxConstraints(
+                                    maxWidth: double.infinity, minHeight: 50),
+                                child: Text(
+                                  "LOGIN",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      letterSpacing: 2,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
-                )),
+                ),
+              ),
+            ),
           );
   }
 }
