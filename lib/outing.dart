@@ -6,18 +6,14 @@ import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/barcode_result.dart';
 
-
 String barcode = '-1';
+
 class Outing extends StatefulWidget {
   @override
   _OutingState createState() => _OutingState();
 }
 
 class _OutingState extends State<Outing> {
-  
-  
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,19 +105,20 @@ class _OutingState extends State<Outing> {
         ScanMode.BARCODE,
       );
       if (!mounted) return;
-      setState(() async{
+      setState(() async {
         if (barcode != '-1') {
-          
-          DatabaseService().outing(barcode, 'Out');
-          BarcodeResult a = BarcodeResult();
-          a.result=barcode;
-          
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
+          bool res = await DatabaseService().outing(barcode, 'Out');
+          if (res) {
+            BarcodeResult a = BarcodeResult();
+            a.result = barcode;
+            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
+          } else {
+            await AlertDialogs.okDialog(
+                context, 'OUTSIDER', 'Please scan student ID card');
+          }
         } else {
           await AlertDialogs.okDialog(
-                                          context,
-                                          'Scan Error',
-                                          'Please Scan Barcode');
+              context, 'Scan Error', 'Please Scan Barcode');
         }
       });
     } on PlatformException {
@@ -138,18 +135,20 @@ class _OutingState extends State<Outing> {
         ScanMode.BARCODE,
       );
       if (!mounted) return;
-      setState(() async{
+      setState(() async {
         if (barcode != '-1') {
-          DatabaseService().outing(barcode, 'In');
-          BarcodeResult a = BarcodeResult();
-          a.result=barcode;
-          
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
+          bool res = await DatabaseService().outing(barcode, 'In');
+          if (res) {
+            BarcodeResult a = BarcodeResult();
+            a.result = barcode;
+            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
+          } else {
+            await AlertDialogs.okDialog(
+                context, 'OUTSIDER', 'Please scan student ID card');
+          }
         } else {
           await AlertDialogs.okDialog(
-                                          context,
-                                          'Scan Error',
-                                          'Please Scan Barcode');
+              context, 'Scan Error', 'Please Scan Barcode');
         }
       });
     } on PlatformException {
@@ -157,4 +156,3 @@ class _OutingState extends State<Outing> {
     }
   }
 }
-

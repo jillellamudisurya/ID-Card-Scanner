@@ -98,17 +98,20 @@ class _LeaveState extends State<Leave> {
         ScanMode.BARCODE,
       );
       if (!mounted) return;
-      setState(() async{
+      setState(() async {
         if (barcode != '-1') {
-          DatabaseService().leave(barcode, 'Out');
-          BarcodeResult a = BarcodeResult();
-          a.result=barcode;
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
+          bool res = await DatabaseService().leave(barcode, 'Out');
+          if (res) {
+            BarcodeResult a = BarcodeResult();
+            a.result = barcode;
+            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
+          } else {
+            await AlertDialogs.okDialog(
+                context, 'OUTSIDER', 'Please scan student ID card');
+          }
         } else {
           await AlertDialogs.okDialog(
-                                          context,
-                                          'Scan Error',
-                                          'Please Scan Barcode');
+              context, 'Scan Error', 'Please Scan Barcode');
         }
       });
     } on PlatformException {
@@ -125,17 +128,20 @@ class _LeaveState extends State<Leave> {
         ScanMode.BARCODE,
       );
       if (!mounted) return;
-      setState(() async{
+      setState(() async {
         if (barcode != '-1') {
-          DatabaseService().leave(barcode, 'In');
-          BarcodeResult a = BarcodeResult();
-          a.result=barcode;
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>a));
+          bool res = await DatabaseService().leave(barcode, 'In');
+          if (res) {
+            BarcodeResult a = BarcodeResult();
+            a.result = barcode;
+            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
+          } else {
+            await AlertDialogs.okDialog(
+                context, 'OUTSIDER', 'Please scan student ID card');
+          }
         } else {
           await AlertDialogs.okDialog(
-                                          context,
-                                          'Scan Error',
-                                          'Please Scan Barcode');
+              context, 'Scan Error', 'Please Scan Barcode');
         }
       });
     } on PlatformException {

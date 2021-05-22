@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/error.dart';
 import 'package:idcardscanner/LeaveStats.dart';
 import 'package:idcardscanner/OutingStats.dart';
+import 'package:idcardscanner/sideNav.dart';
 
 class Adminsuccess extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
         actions: <Widget>[
           TextButton.icon(
               onPressed: () async {
-                 await AlertDialogs2.yesCancelDialog(
+                await AlertDialogs2.yesCancelDialog(
                     context, 'Sign Out', 'Are You Sure ?');
               },
               icon: Icon(
@@ -38,6 +39,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
               ))
         ],
       ),
+      drawer: SideNav(),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -69,7 +71,10 @@ class _AdminsuccessState extends State<Adminsuccess> {
                   SizedBox(height: 30),
                   ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>OutingStats()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OutingStats()));
                     },
                     icon: Icon(Icons.stacked_bar_chart),
                     label: Text('Outing Statistics'),
@@ -82,7 +87,10 @@ class _AdminsuccessState extends State<Adminsuccess> {
                   SizedBox(height: 30),
                   ElevatedButton.icon(
                     onPressed: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>LeaveStats()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LeaveStats()));
                     },
                     icon: Icon(Icons.stacked_bar_chart),
                     label: Text('Leave Statistics'),

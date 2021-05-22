@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/outing.dart';
 import 'package:idcardscanner/leave.dart';
 import 'package:idcardscanner/error.dart';
+import 'package:idcardscanner/secSideNav.dart';
 
 class Secsuccess extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _SecsuccessState extends State<Secsuccess> {
         actions: <Widget>[
           TextButton.icon(
               onPressed: () async {
-                 await AlertDialogs2.yesCancelDialog(
+                await AlertDialogs2.yesCancelDialog(
                     context, 'Sign Out', 'Are You Sure ?');
               },
               icon: Icon(
@@ -37,6 +38,7 @@ class _SecsuccessState extends State<Secsuccess> {
               ))
         ],
       ),
+      drawer: SecSideNav(),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
