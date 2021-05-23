@@ -15,7 +15,7 @@ class _SecloginState extends State<Seclogin> {
   GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
   String email = '', password = '';
   bool isLoad = false;
-
+  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     return isLoad
@@ -38,14 +38,13 @@ class _SecloginState extends State<Seclogin> {
               ),
               alignment: Alignment.center,
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: SafeArea(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 130),
                         Text(
                           "SECURITY",
                           style: TextStyle(
@@ -110,7 +109,7 @@ class _SecloginState extends State<Seclogin> {
                           child: Form(
                             key: formkey1,
                             child: TextFormField(
-                              obscureText: true,
+                              obscureText: _obscureText,
                               validator: (String name) {
                                 if (name.isEmpty) {
                                   return "Required *";
@@ -135,6 +134,16 @@ class _SecloginState extends State<Seclogin> {
                                     borderSide: BorderSide(
                                       color: Colors.red,
                                     )),
+                                suffixIcon: new GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                    });
+                                  },
+                                  child: new Icon(_obscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                ),
                               ),
                             ),
                           ),

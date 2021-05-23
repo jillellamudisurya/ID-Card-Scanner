@@ -16,6 +16,7 @@ class _AdminloginState extends State<Adminlogin> {
 
   String email = '', password = '';
   bool isLoad = false;
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +40,13 @@ class _AdminloginState extends State<Adminlogin> {
               ),
               alignment: Alignment.center,
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: SafeArea(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 130),
                         Text(
                           "ADMIN",
                           style: TextStyle(
@@ -111,7 +111,7 @@ class _AdminloginState extends State<Adminlogin> {
                           child: Form(
                             key: formkey1,
                             child: TextFormField(
-                              obscureText: true,
+                              obscureText: _obscureText,
                               validator: (String name) {
                                 if (name.isEmpty) {
                                   return "Required *";
@@ -136,6 +136,16 @@ class _AdminloginState extends State<Adminlogin> {
                                     borderSide: BorderSide(
                                       color: Colors.red,
                                     )),
+                                suffixIcon: new GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                    });
+                                  },
+                                  child: new Icon(_obscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                ),
                               ),
                             ),
                           ),
