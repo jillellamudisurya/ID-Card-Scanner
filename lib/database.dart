@@ -3,6 +3,11 @@ import 'package:idcardscanner/user.dart';
 import 'package:idcardscanner/auth.dart';
 
 class DatabaseService {
+  final CollectionReference sample = Firestore.instance
+      .collection("24-5-2021")
+      .document("Outing")
+      .collection("Out");
+
   _getDate() {
     var date = new DateTime.now().toString();
     var dateParse = DateTime.parse(date);
@@ -92,5 +97,9 @@ class DatabaseService {
         return doc.data['name'];
       }
     }
+  }
+
+  Stream<QuerySnapshot> get stud {
+    return sample.snapshots();
   }
 }
