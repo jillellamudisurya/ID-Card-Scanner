@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:idcardscanner/allDb.dart';
 import 'package:idcardscanner/button_widget.dart';
-import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/login_alert.dart';
-import 'package:idcardscanner/barcode_result.dart';
 
 String barcode = '-1';
 
@@ -107,15 +106,10 @@ class _OutingState extends State<Outing> {
       if (!mounted) return;
       setState(() async {
         if (barcode != '-1') {
-          bool res = await DatabaseService().outing(barcode, 'Out');
-          if (res) {
-            BarcodeResult a = BarcodeResult();
-            a.result = barcode;
-            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
-          } else {
-            await AlertDialogs.okDialog(
-                context, 'OUTSIDER', 'Please scan student ID card');
-          }
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CallDbOut(barcode, 'Out')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
@@ -137,15 +131,10 @@ class _OutingState extends State<Outing> {
       if (!mounted) return;
       setState(() async {
         if (barcode != '-1') {
-          bool res = await DatabaseService().outing(barcode, 'In');
-          if (res) {
-            BarcodeResult a = BarcodeResult();
-            a.result = barcode;
-            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
-          } else {
-            await AlertDialogs.okDialog(
-                context, 'OUTSIDER', 'Please scan student ID card');
-          }
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CallDbOut(barcode, 'In')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');

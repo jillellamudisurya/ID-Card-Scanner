@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'security_success.dart';
 
 // ignore: must_be_immutable
-class BarcodeResult extends StatelessWidget {
+class BarcodeResult extends StatefulWidget {
   String result = '';
+  @override
+  _BarcodeResultState createState() => _BarcodeResultState(result);
+}
+
+class _BarcodeResultState extends State<BarcodeResult> {
+  String result;
+  _BarcodeResultState(this.result);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

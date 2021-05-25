@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:idcardscanner/allDb.dart';
 import 'package:idcardscanner/button_widget.dart';
-import 'package:idcardscanner/database.dart';
 import 'package:idcardscanner/login_alert.dart';
-import 'package:idcardscanner/barcode_result.dart';
 
 class Leave extends StatefulWidget {
   @override
@@ -100,15 +99,10 @@ class _LeaveState extends State<Leave> {
       if (!mounted) return;
       setState(() async {
         if (barcode != '-1') {
-          bool res = await DatabaseService().leave(barcode, 'Out');
-          if (res) {
-            BarcodeResult a = BarcodeResult();
-            a.result = barcode;
-            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
-          } else {
-            await AlertDialogs.okDialog(
-                context, 'OUTSIDER', 'Please scan student ID card');
-          }
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CallDbLeave(barcode, 'Out')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
@@ -130,15 +124,10 @@ class _LeaveState extends State<Leave> {
       if (!mounted) return;
       setState(() async {
         if (barcode != '-1') {
-          bool res = await DatabaseService().leave(barcode, 'In');
-          if (res) {
-            BarcodeResult a = BarcodeResult();
-            a.result = barcode;
-            Navigator.push(context, MaterialPageRoute(builder: (context) => a));
-          } else {
-            await AlertDialogs.okDialog(
-                context, 'OUTSIDER', 'Please scan student ID card');
-          }
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CallDbLeave(barcode, 'In')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');

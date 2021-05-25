@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/database.dart';
-import 'package:idcardscanner/loading.dart';
 
 class SecSideNav extends StatefulWidget {
   @override
@@ -8,25 +7,19 @@ class SecSideNav extends StatefulWidget {
 }
 
 class _SecSideNavState extends State<SecSideNav> {
-  static int c = 0;
-  static String name;
+  static String name = 'Loading...';
   @override
   Widget build(BuildContext context) {
-    if (c == 0) {
-      c = 1;
-      return FutureBuilder<String>(
-          future: DatabaseService().getName(),
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (snapshot.hasData) {
-              name = snapshot.data;
-              return DisplayNav(name);
-            } else {
-              return Loading();
-            }
-          });
-    } else {
-      return DisplayNav(name);
-    }
+    return FutureBuilder<String>(
+        future: DatabaseService().getName(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.hasData) {
+            name = snapshot.data;
+            return DisplayNav(name);
+          } else {
+            return DisplayNav(name);
+          }
+        });
   }
 }
 

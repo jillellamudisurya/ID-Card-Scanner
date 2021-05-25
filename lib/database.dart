@@ -9,13 +9,13 @@ class DatabaseService {
     return "${dateParse.day}-${dateParse.month}-${dateParse.year}";
   }
 
-  Future<bool> outing(String scan, String state) async {
+  Future<int> outing(String scan, String state) async {
     final CollectionReference outingOut =
         Firestore.instance.collection(_getDate());
     DocumentSnapshot snap =
         await Firestore.instance.collection('Students_Ph').document(scan).get();
     if (snap == null || !snap.exists) {
-      return false;
+      return -1;
     }
     User user = await AuthService().user.first;
     DocumentSnapshot snap2 = await Firestore.instance
@@ -25,21 +25,31 @@ class DatabaseService {
     var dateTime = DateTime.now();
     var timeNow =
         "${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.ceil()}";
-    await outingOut.document('Outing').collection(state).document().setData({
+    var collec = outingOut
+        .document('Outing')
+        .collection(state)
+        .document(snap.data['id']);
+    DocumentSnapshot collecSnap = await collec.get();
+    if (!(collecSnap == null || !collecSnap.exists)) {
+      return 0;
+    }
+
+    collec.setData({
       'Scanned': snap.data['name'],
       'OutTime': timeNow,
       'Scanned By Name': snap2.data['name']
     });
-    return true;
+
+    return 1;
   }
 
-  Future leave(String scan, String state) async {
+  Future<int> leave(String scan, String state) async {
     final CollectionReference leaveOut =
         Firestore.instance.collection(_getDate());
     DocumentSnapshot snap =
         await Firestore.instance.collection('Students_Ph').document(scan).get();
     if (snap == null || !snap.exists) {
-      return false;
+      return -1;
     }
     User user = await AuthService().user.first;
     DocumentSnapshot snap2 = await Firestore.instance
@@ -49,12 +59,19 @@ class DatabaseService {
     var dateTime = DateTime.now();
     var timeNow =
         "${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.ceil()}";
-    await leaveOut.document('Leave').collection(state).document().setData({
+
+    var collec =
+        leaveOut.document('Leave').collection(state).document(snap.data['id']);
+    DocumentSnapshot collecSnap = await collec.get();
+    if (!(collecSnap == null || !collecSnap.exists)) {
+      return 0;
+    }
+    collec.setData({
       'Scanned': snap.data['name'],
       'OutTime': timeNow,
       'Scanned By Name': snap2.data['name']
     });
-    return true;
+    return 1;
   }
 
   // ignore: missing_return
