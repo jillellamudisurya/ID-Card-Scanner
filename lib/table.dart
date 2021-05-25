@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:bidirectional_scroll_view/bidirectional_scroll_view.dart';
-import 'package:idcardscanner/stud_data.dart';
 import 'package:idcardscanner/user.dart';
 
 class MyTable extends StatefulWidget {
