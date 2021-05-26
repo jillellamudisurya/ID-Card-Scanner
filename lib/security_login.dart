@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/auth.dart';
 import 'package:idcardscanner/checkAdmin.dart';
@@ -23,18 +24,16 @@ class _SecloginState extends State<Seclogin> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.black,
+              backgroundColor: Color(0xff34456e),
               elevation: 0,
+              systemOverlayStyle: SystemUiOverlayStyle.light,
               centerTitle: true,
-              title: Text("ID card Scanner"),
+              title: Text("ID Card Scanner"),
             ),
             body: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xfd3cce3), Color(0xfE9E4F0)],
-                ),
+                image: DecorationImage(
+                    image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
               ),
               alignment: Alignment.center,
               padding: EdgeInsets.only(left: 16, right: 16),
@@ -94,13 +93,13 @@ class _SecloginState extends State<Seclogin> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.red,
+                                      color: Color(0xff34456e),
                                     )),
                               ),
                             ),
                           ),
                           data: Theme.of(context)
-                              .copyWith(primaryColor: Color(0xffff5f6d)),
+                              .copyWith(primaryColor: Color(0xff34456e)),
                         ),
                         SizedBox(
                           height: 16,
@@ -132,7 +131,7 @@ class _SecloginState extends State<Seclogin> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.red,
+                                      color: Color(0xff34456e),
                                     )),
                                 suffixIcon: new GestureDetector(
                                   onTap: () {
@@ -148,7 +147,7 @@ class _SecloginState extends State<Seclogin> {
                             ),
                           ),
                           data: Theme.of(context)
-                              .copyWith(primaryColor: Color(0xffff5f6d)),
+                              .copyWith(primaryColor: Color(0xff34456e)),
                         ),
                         SizedBox(
                           height: 40,
@@ -203,9 +202,10 @@ class _SecloginState extends State<Seclogin> {
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                   colors: [
-                                    Color(0xffff5f6d),
-                                    Color(0xffff5f6d),
-                                    Color(0xffffc371),
+                                    Color(0xff6673b4),
+                                    Color(0xff5867a2),
+                                    Color(0xff3f507f),
+                                    Color(0xff34456e)
                                   ],
                                 ),
                               ),
