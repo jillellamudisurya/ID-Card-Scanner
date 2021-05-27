@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/auth.dart';
 import 'package:idcardscanner/checkAdmin.dart';
@@ -26,7 +25,6 @@ class _SecloginState extends State<Seclogin> {
             appBar: AppBar(
               backgroundColor: Color(0xff34456e),
               elevation: 0,
-              systemOverlayStyle: SystemUiOverlayStyle.light,
               centerTitle: true,
               title: Text("ID Card Scanner"),
             ),
@@ -146,8 +144,9 @@ class _SecloginState extends State<Seclogin> {
                               ),
                             ),
                           ),
-                          data: Theme.of(context)
-                              .copyWith(primaryColor: Color(0xff34456e)),
+                          data: Theme.of(context).copyWith(
+                            primaryColor: Color(0xff34456e),
+                          ),
                         ),
                         SizedBox(
                           height: 40,

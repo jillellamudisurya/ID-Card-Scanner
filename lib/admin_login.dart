@@ -25,18 +25,15 @@ class _AdminloginState extends State<Adminlogin> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.black,
+              backgroundColor: Color(0xff34456e),
               elevation: 0,
               centerTitle: true,
               title: Text("ID card Scanner"),
             ),
             body: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xfd3cce3), Color(0xfE9E4F0)],
-                ),
+                image: DecorationImage(
+                    image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
               ),
               alignment: Alignment.center,
               padding: EdgeInsets.only(left: 16, right: 16),
@@ -96,13 +93,13 @@ class _AdminloginState extends State<Adminlogin> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.red,
+                                      color: Color(0xff34456e),
                                     )),
                               ),
                             ),
                           ),
                           data: Theme.of(context)
-                              .copyWith(primaryColor: Color(0xffff5f6d)),
+                              .copyWith(primaryColor: Color(0xff34456e)),
                         ),
                         SizedBox(
                           height: 16,
@@ -134,7 +131,7 @@ class _AdminloginState extends State<Adminlogin> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.red,
+                                      color: Color(0xff34456e),
                                     )),
                                 suffixIcon: new GestureDetector(
                                   onTap: () {
@@ -150,7 +147,7 @@ class _AdminloginState extends State<Adminlogin> {
                             ),
                           ),
                           data: Theme.of(context)
-                              .copyWith(primaryColor: Color(0xffff5f6d)),
+                              .copyWith(primaryColor: Color(0xff34456e)),
                         ),
                         SizedBox(
                           height: 40,
@@ -205,9 +202,10 @@ class _AdminloginState extends State<Adminlogin> {
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                   colors: [
-                                    Color(0xffff5f6d),
-                                    Color(0xffff5f6d),
-                                    Color(0xffffc371),
+                                    Color(0xff6673b4),
+                                    Color(0xff5867a2),
+                                    Color(0xff3f507f),
+                                    Color(0xff34456e)
                                   ],
                                 ),
                               ),

@@ -10,20 +10,77 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       //backgroundColor: Colors.grey[850],
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         title: Text('ID Card Scanner'),
         centerTitle: true,
         elevation: 0.0,
       ),
 
       body: Container(
+        padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                colors: [Colors.black, Colors.grey, Colors.black])),
+          image: DecorationImage(
+              image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
+        ),
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 60,
+            ),
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/adminsecurity.jpg'),
+                radius: 60.0,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 50,
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Seclogin()));
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                child: Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color(0xff6673b4),
+                        Color(0xff5867a2),
+                        Color(0xff3f507f),
+                        Color(0xff34456e)
+                      ],
+                    ),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: BoxConstraints(
+                        maxWidth: double.infinity, minHeight: 50),
+                    child: Text(
+                      "SECURITY",
+                      style: TextStyle(
+                          letterSpacing: 2,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 50,
             ),
@@ -34,52 +91,50 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
-            Center(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Seclogin()));
-                },
-                icon: Icon(
-                  Icons.login,
-                ),
-                label: Text(
-                  'SECURITY',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 70,
-            ),
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/adminsecurity.jpg'),
-                radius: 60.0,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: ElevatedButton.icon(
+            Container(
+              height: 50,
+              width: double.infinity,
+              child: TextButton(
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Adminlogin()));
                 },
-                icon: Icon(
-                  Icons.login,
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                 ),
-                label: Text('ADMIN',
-                    style: TextStyle(
-                      fontSize: 10.0,
-                      fontWeight: FontWeight.bold,
-                    )),
+                child: Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color(0xff6673b4),
+                        Color(0xff5867a2),
+                        Color(0xff3f507f),
+                        Color(0xff34456e)
+                      ],
+                    ),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: BoxConstraints(
+                        maxWidth: double.infinity, minHeight: 50),
+                    child: Text(
+                      "ADMIN",
+                      style: TextStyle(
+                          letterSpacing: 2,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
