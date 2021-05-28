@@ -7,6 +7,7 @@ import 'package:idcardscanner/sideNav.dart';
 // ignore: must_be_immutable
 class Adminsuccess extends StatefulWidget {
   String name;
+  // this is constructor
   Adminsuccess(this.name);
   @override
   _AdminsuccessState createState() => _AdminsuccessState(name);
