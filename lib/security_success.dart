@@ -64,8 +64,10 @@ class _SecsuccessState extends State<Secsuccess> {
                   SizedBox(height: 30),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Outing()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Outing(name)));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),

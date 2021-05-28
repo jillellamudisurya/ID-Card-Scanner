@@ -8,12 +8,17 @@ import 'package:idcardscanner/secSideNav.dart';
 
 String barcode = '-1';
 
+// ignore: must_be_immutable
 class Outing extends StatefulWidget {
+  String name;
+  Outing(this.name);
   @override
-  _OutingState createState() => _OutingState();
+  _OutingState createState() => _OutingState(name);
 }
 
 class _OutingState extends State<Outing> {
+  String name;
+  _OutingState(this.name);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +28,7 @@ class _OutingState extends State<Outing> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      drawer: SecSideNav(),
+      drawer: SecSideNav(name),
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
