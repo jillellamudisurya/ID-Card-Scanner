@@ -32,6 +32,7 @@ class AuthService {
       if ((isAdmin == true && adm == false) ||
           (isAdmin == false && adm == true)) {
         signout();
+        return null;
       }
       return user.uid;
     } catch (e) {

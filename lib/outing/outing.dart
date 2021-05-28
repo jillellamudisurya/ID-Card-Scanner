@@ -95,7 +95,7 @@ class _OutingState extends State<Outing> {
   Future<void> scanBarcodeOut() async {
     try {
       final barcode = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666",
+        "#34456e",
         "Cancel",
         true,
         ScanMode.BARCODE,
@@ -120,7 +120,7 @@ class _OutingState extends State<Outing> {
   Future<void> scanBarcodeIn() async {
     try {
       final barcode = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666",
+        "#34456e",
         "Cancel",
         true,
         ScanMode.BARCODE,

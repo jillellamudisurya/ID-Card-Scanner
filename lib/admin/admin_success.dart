@@ -53,8 +53,9 @@ class _AdminsuccessState extends State<Adminsuccess> {
               image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 180),
+            SizedBox(height: 60),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

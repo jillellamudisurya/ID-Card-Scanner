@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bidirectional_scroll_view/bidirectional_scroll_view.dart';
 import 'package:idcardscanner/misc/user.dart';
 
 class MyTable extends StatefulWidget {
@@ -26,12 +25,16 @@ class _MyTableState extends State<MyTable> {
       'Scanned By'
     ];
     this.studDatacopy = widget.studData.toList();
-    return BidirectionalScrollViewPlugin(
-        child: DataTable(
-            sortAscending: isAscending,
-            sortColumnIndex: sortColumnIndex,
-            columns: getColumns(columns),
-            rows: getRows(studDatacopy)));
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              sortAscending: isAscending,
+              sortColumnIndex: sortColumnIndex,
+              columns: getColumns(columns),
+              rows: getRows(studDatacopy))),
+    );
   }
 
   List<DataCell> getCells(List<dynamic> cells) =>
