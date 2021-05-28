@@ -26,7 +26,6 @@ dependencies:
 
   flutter_barcode_scanner: ^2.0.0
   bidirectional_scroll_view: ^0.1.1
-
   
 
   #scanBarcode

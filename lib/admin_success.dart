@@ -4,13 +4,18 @@ import 'package:idcardscanner/LeaveStats.dart';
 import 'package:idcardscanner/OutingStats.dart';
 import 'package:idcardscanner/sideNav.dart';
 
+// ignore: must_be_immutable
 class Adminsuccess extends StatefulWidget {
+  String name;
+  Adminsuccess(this.name);
   @override
-  _AdminsuccessState createState() => _AdminsuccessState();
+  _AdminsuccessState createState() => _AdminsuccessState(name);
 }
 
 class _AdminsuccessState extends State<Adminsuccess> {
-  String title = 'AlertDialog2';
+  String title = 'AlertDialog2', name;
+  _AdminsuccessState(this.name);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +44,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
               ))
         ],
       ),
-      drawer: SideNav(),
+      drawer: SideNav(name),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(

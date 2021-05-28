@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/error.dart';
-import 'package:idcardscanner/security_success.dart';
+import 'package:idcardscanner/wrapper.dart';
 
 // ignore: must_be_immutable
 class Wentout extends StatefulWidget {
@@ -54,7 +54,7 @@ class _WentoutState extends State<Wentout> {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => Secsuccess()));
+                      builder: (BuildContext context) => Wrapper()));
             },
             icon: Icon(Icons.home),
             label: Text('HOME'),
@@ -106,7 +106,7 @@ class _OutsiderState extends State<Outsider> {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => Secsuccess()));
+                      builder: (BuildContext context) => Wrapper()));
             },
             icon: Icon(Icons.home),
             label: Text('HOME'),

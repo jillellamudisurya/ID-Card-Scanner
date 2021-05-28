@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'security_success.dart';
+import 'package:idcardscanner/wrapper.dart';
 
 // ignore: must_be_immutable
 class BarcodeResult extends StatefulWidget {
@@ -61,7 +61,7 @@ class _BarcodeResultState extends State<BarcodeResult> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => Secsuccess()));
+                          builder: (BuildContext context) => Wrapper()));
                 },
                 icon: Icon(Icons.home),
                 label: Text('HOME'),

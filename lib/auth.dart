@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:idcardscanner/checkAdmin.dart';
 import 'package:idcardscanner/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   User _userFromFB(FirebaseUser user) {
-    return user != null ? new User(uid: user.uid) : null;
+    return user != null
+        ? new User(uid: user.uid, name: user.displayName)
+        : null;
   }
 
   Stream<User> get user {
@@ -20,11 +23,16 @@ class AuthService {
     }
   }
 
-  Future signIn(String mail, String pswd) async {
+  Future signIn(String mail, String pswd, bool isAdmin) async {
     try {
       AuthResult result =
           await _auth.signInWithEmailAndPassword(email: mail, password: pswd);
       FirebaseUser user = result.user;
+      bool adm = await CheckAdmin().isAdmin(user.uid);
+      if ((isAdmin == true && adm == false) ||
+          (isAdmin == false && adm == true)) {
+        signout();
+      }
       return user.uid;
     } catch (e) {
       return null;

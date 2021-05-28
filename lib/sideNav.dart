@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/database.dart';
 
+// ignore: must_be_immutable
 class SideNav extends StatefulWidget {
+  String name;
+  SideNav(this.name);
   @override
-  _SideNavState createState() => _SideNavState();
+  _SideNavState createState() => _SideNavState(name);
 }
 
 class _SideNavState extends State<SideNav> {
-  static String name = 'Loading...';
+  String name;
+  _SideNavState(this.name);
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-        future: DatabaseService().getName(),
-        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-          if (snapshot.hasData) {
-            name = snapshot.data;
-            return DisplayNav(name);
-          } else {
-            return DisplayNav(name);
-          }
-        });
+    return DisplayNav(name);
   }
 }
 

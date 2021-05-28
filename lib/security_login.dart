@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/auth.dart';
-import 'package:idcardscanner/checkAdmin.dart';
 import 'package:idcardscanner/loading.dart';
 
 class Seclogin extends StatefulWidget {
@@ -162,22 +161,8 @@ class _SecloginState extends State<Seclogin> {
                                   isLoad = true;
                                 });
                                 dynamic result =
-                                    await _auth.signIn(email, password);
-
-                                if ((result != null) &&
-                                    !CheckAdmin().isAdmin(result)) {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => Secsuccess()));
-
-                                  Navigator.pop(context);
-                                } else {
-                                  // Navigator.push(
-                                  //   context,
-                                  // MaterialPageRoute(
-                                  //   builder: (context) => Error()));
-
+                                    await _auth.signIn(email, password, false);
+                                if (result == null) {
                                   setState(() {
                                     isLoad = false;
                                   });
@@ -185,6 +170,8 @@ class _SecloginState extends State<Seclogin> {
                                       context,
                                       'Incorrect Details',
                                       'Enter valid Details');
+                                } else {
+                                  Navigator.pop(context);
                                 }
                               }
                             },

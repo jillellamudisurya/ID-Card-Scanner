@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CheckAdmin {
-  bool isAdmin(String id) {
-    if (id == '6V3TnlrRYxapw5HGOIqF14hG9tV2' ||
-        id == 'AnfgPz6iHJPJZvFY0QPDaX42vG12') return true;
-    return false;
+  Future<bool> isAdmin(String id) async {
+    DocumentSnapshot snap =
+        await Firestore.instance.collection('Admins').document(id).get();
+    if (snap == null || !snap.exists) {
+      return false;
+    }
+    return true;
   }
 }

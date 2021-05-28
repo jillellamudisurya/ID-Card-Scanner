@@ -6,17 +6,24 @@ import 'package:idcardscanner/user.dart';
 import 'package:provider/provider.dart';
 import 'package:idcardscanner/checkAdmin.dart';
 
-
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    if (user != null) {
-      if (CheckAdmin().isAdmin(user.uid))
-        return Adminsuccess();
-      else
-        return Secsuccess();
-    }
-    return Homepage();
+    if (user == null) return Homepage();
+
+    return FutureBuilder<bool>(
+        future: CheckAdmin().isAdmin(user.uid),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data) {
+              return Adminsuccess(user.name);
+            } else {
+              return Secsuccess(user.name);
+            }
+          } else {
+            return Container();
+          }
+        });
   }
 }

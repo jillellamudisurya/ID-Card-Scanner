@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/loading.dart';
 import 'package:idcardscanner/login_alert.dart';
 import 'package:idcardscanner/auth.dart';
-import 'package:idcardscanner/checkAdmin.dart';
 
 class Adminlogin extends StatefulWidget {
   @override
@@ -163,22 +162,8 @@ class _AdminloginState extends State<Adminlogin> {
                                   isLoad = true;
                                 });
                                 dynamic result =
-                                    await _auth.signIn(email, password);
-
-                                if ((result != null) &&
-                                    CheckAdmin().isAdmin(result)) {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => Secsuccess()));
-
-                                  Navigator.pop(context);
-                                } else {
-                                  // Navigator.push(
-                                  //   context,
-                                  // MaterialPageRoute(
-                                  //   builder: (context) => Error()));
-
+                                    await _auth.signIn(email, password, true);
+                                if (result == null) {
                                   setState(() {
                                     isLoad = false;
                                   });
@@ -186,6 +171,8 @@ class _AdminloginState extends State<Adminlogin> {
                                       context,
                                       'Incorrect Details',
                                       'Enter valid Details');
+                                } else {
+                                  Navigator.pop(context);
                                 }
                               }
                             },
