@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:idcardscanner/checkAdmin.dart';
-import 'package:idcardscanner/user.dart';
+import 'package:idcardscanner/misc/checkAdmin.dart';
+import 'package:idcardscanner/misc/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/admin_login.dart';
-import 'package:idcardscanner/security_login.dart';
+import 'package:idcardscanner/admin/admin_login.dart';
+import 'package:idcardscanner/security/security_login.dart';
 
 class Homepage extends StatelessWidget {
   static final String title = 'Barcode Scanner';

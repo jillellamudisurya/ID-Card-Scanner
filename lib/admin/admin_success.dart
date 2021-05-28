@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/outing.dart';
-import 'package:idcardscanner/leave.dart';
-import 'package:idcardscanner/error.dart';
-import 'package:idcardscanner/secSideNav.dart';
+import 'package:idcardscanner/errors/error.dart';
+import 'package:idcardscanner/leave/LeaveStats.dart';
+import 'package:idcardscanner/outing/OutingStats.dart';
+import 'package:idcardscanner/admin/sideNav.dart';
 
 // ignore: must_be_immutable
-class Secsuccess extends StatefulWidget {
+class Adminsuccess extends StatefulWidget {
   String name;
-  Secsuccess(this.name);
+  // this is constructor
+  Adminsuccess(this.name);
   @override
-  _SecsuccessState createState() => _SecsuccessState(name);
+  _AdminsuccessState createState() => _AdminsuccessState(name);
 }
 
-class _SecsuccessState extends State<Secsuccess> {
-  String name;
-  _SecsuccessState(this.name);
+class _AdminsuccessState extends State<Adminsuccess> {
+  String title = 'AlertDialog2', name;
+  _AdminsuccessState(this.name);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
         backgroundColor: Color(0xff34456e),
@@ -42,7 +45,7 @@ class _SecsuccessState extends State<Secsuccess> {
               ))
         ],
       ),
-      drawer: SecSideNav(name),
+      drawer: SideNav(name),
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
@@ -50,15 +53,14 @@ class _SecsuccessState extends State<Secsuccess> {
               image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 60),
+            SizedBox(height: 180),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
+                    backgroundImage: AssetImage('assets/stats.png'),
                     radius: 50.0,
                   ),
                   SizedBox(height: 30),
@@ -67,7 +69,7 @@ class _SecsuccessState extends State<Secsuccess> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Outing(name)));
+                              builder: (context) => OutingStats()));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),
@@ -94,7 +96,7 @@ class _SecsuccessState extends State<Secsuccess> {
                         constraints: BoxConstraints(
                             maxWidth: double.infinity, minHeight: 50),
                         child: Text(
-                          "OUTING",
+                          "OUTING STATISTICS",
                           style: TextStyle(
                               letterSpacing: 2,
                               color: Colors.white,
@@ -106,14 +108,16 @@ class _SecsuccessState extends State<Secsuccess> {
                   ),
                   SizedBox(height: 30),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
+                    backgroundImage: AssetImage('assets/stats.png'),
                     radius: 50.0,
                   ),
                   SizedBox(height: 30),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Leave()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LeaveStats()));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),
@@ -140,7 +144,7 @@ class _SecsuccessState extends State<Secsuccess> {
                         constraints: BoxConstraints(
                             maxWidth: double.infinity, minHeight: 50),
                         child: Text(
-                          "LEAVE",
+                          "LEAVE STATISTICS",
                           style: TextStyle(
                               letterSpacing: 2,
                               color: Colors.white,

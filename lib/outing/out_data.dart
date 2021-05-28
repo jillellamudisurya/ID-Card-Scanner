@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idcardscanner/database.dart';
-import 'package:idcardscanner/stud_data.dart';
+import 'package:idcardscanner/services/database.dart';
+import 'package:idcardscanner/outputs/stud_data.dart';
 
 class OutData extends StatefulWidget {
   @override

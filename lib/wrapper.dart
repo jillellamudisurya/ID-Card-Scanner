@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/admin_success.dart';
+import 'package:idcardscanner/admin/admin_success.dart';
 import 'package:idcardscanner/home.dart';
-import 'package:idcardscanner/security_success.dart';
-import 'package:idcardscanner/user.dart';
+import 'package:idcardscanner/security/security_success.dart';
+import 'package:idcardscanner/misc/user.dart';
 import 'package:provider/provider.dart';
-import 'package:idcardscanner/checkAdmin.dart';
+import 'package:idcardscanner/misc/checkAdmin.dart';
 
 class Wrapper extends StatelessWidget {
   @override

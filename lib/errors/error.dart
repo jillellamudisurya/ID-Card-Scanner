@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/auth.dart';
+import 'package:idcardscanner/services/auth.dart';
 
 enum DialogsAction { yes, cancel }
 

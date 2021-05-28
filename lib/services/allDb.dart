@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/already_went.dart';
-import 'package:idcardscanner/barcode_result.dart';
-import 'package:idcardscanner/database.dart';
-import 'package:idcardscanner/loading.dart';
+import 'package:idcardscanner/misc/already_went.dart';
+import 'package:idcardscanner/outputs/barcode_result.dart';
+import 'package:idcardscanner/services/database.dart';
+import 'package:idcardscanner/misc/loading.dart';
 
 // ignore: must_be_immutable
 class CallDbOut extends StatefulWidget {

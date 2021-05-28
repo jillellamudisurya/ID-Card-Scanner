@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idcardscanner/user.dart';
-import 'package:idcardscanner/auth.dart';
+import 'package:idcardscanner/misc/user.dart';
+import 'package:idcardscanner/services/auth.dart';
 
 class DatabaseService {
   _getDate() {

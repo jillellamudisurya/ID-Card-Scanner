@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/loading.dart';
-import 'package:idcardscanner/login_alert.dart';
-import 'package:idcardscanner/auth.dart';
+import 'package:idcardscanner/errors/login_alert.dart';
+import 'package:idcardscanner/services/auth.dart';
+import 'package:idcardscanner/misc/loading.dart';
 
-class Adminlogin extends StatefulWidget {
+class Seclogin extends StatefulWidget {
   @override
-  _AdminloginState createState() => _AdminloginState();
+  _SecloginState createState() => _SecloginState();
 }
 
-class _AdminloginState extends State<Adminlogin> {
+class _SecloginState extends State<Seclogin> {
   final AuthService _auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
-
   String email = '', password = '';
   bool isLoad = false;
   bool _obscureText = true;
-
   @override
   Widget build(BuildContext context) {
     return isLoad
@@ -27,7 +25,7 @@ class _AdminloginState extends State<Adminlogin> {
               backgroundColor: Color(0xff34456e),
               elevation: 0,
               centerTitle: true,
-              title: Text("ID card Scanner"),
+              title: Text("ID Card Scanner"),
             ),
             body: Container(
               decoration: BoxDecoration(
@@ -44,7 +42,7 @@ class _AdminloginState extends State<Adminlogin> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "ADMIN",
+                          "SECURITY",
                           style: TextStyle(
                               color: Colors.blue[900],
                               fontSize: 40,
@@ -145,8 +143,9 @@ class _AdminloginState extends State<Adminlogin> {
                               ),
                             ),
                           ),
-                          data: Theme.of(context)
-                              .copyWith(primaryColor: Color(0xff34456e)),
+                          data: Theme.of(context).copyWith(
+                            primaryColor: Color(0xff34456e),
+                          ),
                         ),
                         SizedBox(
                           height: 40,
@@ -162,7 +161,7 @@ class _AdminloginState extends State<Adminlogin> {
                                   isLoad = true;
                                 });
                                 dynamic result =
-                                    await _auth.signIn(email, password, true);
+                                    await _auth.signIn(email, password, false);
                                 if (result == null) {
                                   setState(() {
                                     isLoad = false;
@@ -203,8 +202,8 @@ class _AdminloginState extends State<Adminlogin> {
                                 child: Text(
                                   "LOGIN",
                                   style: TextStyle(
-                                      color: Colors.white,
                                       letterSpacing: 2,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/out_data.dart';
+import 'package:idcardscanner/outing/out_data.dart';
 
 class OutingStats extends StatefulWidget {
   @override

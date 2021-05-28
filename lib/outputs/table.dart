@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bidirectional_scroll_view/bidirectional_scroll_view.dart';
-import 'package:idcardscanner/user.dart';
+import 'package:idcardscanner/misc/user.dart';
 
 class MyTable extends StatefulWidget {
   final List<StudentOut> studData;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/error.dart';
+import 'package:idcardscanner/errors/error.dart';
 import 'package:idcardscanner/wrapper.dart';
 
 // ignore: must_be_immutable

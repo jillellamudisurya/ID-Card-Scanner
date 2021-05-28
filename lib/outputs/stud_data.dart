@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-import 'package:idcardscanner/user.dart';
-import 'package:idcardscanner/table.dart';
-import 'package:idcardscanner/loading.dart';
+import 'package:idcardscanner/misc/user.dart';
+import 'package:idcardscanner/outputs/table.dart';
+import 'package:idcardscanner/misc/loading.dart';
 
 class StudData extends StatefulWidget {
   @override

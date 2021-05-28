@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/error.dart';
-import 'package:idcardscanner/LeaveStats.dart';
-import 'package:idcardscanner/OutingStats.dart';
-import 'package:idcardscanner/sideNav.dart';
+import 'package:idcardscanner/outing/outing.dart';
+import 'package:idcardscanner/leave/leave.dart';
+import 'package:idcardscanner/errors/error.dart';
+import 'package:idcardscanner/security/secSideNav.dart';
 
 // ignore: must_be_immutable
-class Adminsuccess extends StatefulWidget {
+class Secsuccess extends StatefulWidget {
   String name;
-  // this is constructor
-  Adminsuccess(this.name);
+  Secsuccess(this.name);
   @override
-  _AdminsuccessState createState() => _AdminsuccessState(name);
+  _SecsuccessState createState() => _SecsuccessState(name);
 }
 
-class _AdminsuccessState extends State<Adminsuccess> {
-  String title = 'AlertDialog2', name;
-  _AdminsuccessState(this.name);
-
+class _SecsuccessState extends State<Secsuccess> {
+  String name;
+  _SecsuccessState(this.name);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
         backgroundColor: Color(0xff34456e),
@@ -45,7 +42,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
               ))
         ],
       ),
-      drawer: SideNav(name),
+      drawer: SecSideNav(name),
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
@@ -53,14 +50,15 @@ class _AdminsuccessState extends State<Adminsuccess> {
               image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 180),
+            SizedBox(height: 60),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/stats.png'),
+                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
                   ),
                   SizedBox(height: 30),
@@ -69,7 +67,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OutingStats()));
+                              builder: (context) => Outing(name)));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),
@@ -96,7 +94,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
                         constraints: BoxConstraints(
                             maxWidth: double.infinity, minHeight: 50),
                         child: Text(
-                          "OUTING STATISTICS",
+                          "OUTING",
                           style: TextStyle(
                               letterSpacing: 2,
                               color: Colors.white,
@@ -108,16 +106,14 @@ class _AdminsuccessState extends State<Adminsuccess> {
                   ),
                   SizedBox(height: 30),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/stats.png'),
+                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
                   ),
                   SizedBox(height: 30),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LeaveStats()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Leave()));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),
@@ -144,7 +140,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
                         constraints: BoxConstraints(
                             maxWidth: double.infinity, minHeight: 50),
                         child: Text(
-                          "LEAVE STATISTICS",
+                          "LEAVE",
                           style: TextStyle(
                               letterSpacing: 2,
                               color: Colors.white,

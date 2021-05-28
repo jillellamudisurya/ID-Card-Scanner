@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/login_alert.dart';
-import 'package:idcardscanner/auth.dart';
-import 'package:idcardscanner/loading.dart';
+import 'package:idcardscanner/misc/loading.dart';
+import 'package:idcardscanner/errors/login_alert.dart';
+import 'package:idcardscanner/services/auth.dart';
 
-class Seclogin extends StatefulWidget {
+class Adminlogin extends StatefulWidget {
   @override
-  _SecloginState createState() => _SecloginState();
+  _AdminloginState createState() => _AdminloginState();
 }
 
-class _SecloginState extends State<Seclogin> {
+class _AdminloginState extends State<Adminlogin> {
   final AuthService _auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
+
   String email = '', password = '';
   bool isLoad = false;
   bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return isLoad
@@ -25,7 +27,7 @@ class _SecloginState extends State<Seclogin> {
               backgroundColor: Color(0xff34456e),
               elevation: 0,
               centerTitle: true,
-              title: Text("ID Card Scanner"),
+              title: Text("ID card Scanner"),
             ),
             body: Container(
               decoration: BoxDecoration(
@@ -42,7 +44,7 @@ class _SecloginState extends State<Seclogin> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "SECURITY",
+                          "ADMIN",
                           style: TextStyle(
                               color: Colors.blue[900],
                               fontSize: 40,
@@ -143,9 +145,8 @@ class _SecloginState extends State<Seclogin> {
                               ),
                             ),
                           ),
-                          data: Theme.of(context).copyWith(
-                            primaryColor: Color(0xff34456e),
-                          ),
+                          data: Theme.of(context)
+                              .copyWith(primaryColor: Color(0xff34456e)),
                         ),
                         SizedBox(
                           height: 40,
@@ -161,7 +162,7 @@ class _SecloginState extends State<Seclogin> {
                                   isLoad = true;
                                 });
                                 dynamic result =
-                                    await _auth.signIn(email, password, false);
+                                    await _auth.signIn(email, password, true);
                                 if (result == null) {
                                   setState(() {
                                     isLoad = false;
@@ -202,8 +203,8 @@ class _SecloginState extends State<Seclogin> {
                                 child: Text(
                                   "LOGIN",
                                   style: TextStyle(
-                                      letterSpacing: 2,
                                       color: Colors.white,
+                                      letterSpacing: 2,
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 ),
