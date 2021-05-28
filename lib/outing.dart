@@ -4,6 +4,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/allDb.dart';
 import 'package:idcardscanner/button_widget.dart';
 import 'package:idcardscanner/login_alert.dart';
+import 'package:idcardscanner/secSideNav.dart';
 
 String barcode = '-1';
 
@@ -16,40 +17,28 @@ class _OutingState extends State<Outing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
       ),
-
+      drawer: SecSideNav(),
       body: Container(
+        padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                colors: [Colors.black, Colors.grey, Colors.black])),
+          image: DecorationImage(
+              image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
+        ),
         child: Column(
           children: [
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                'OUTING',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                  color: Colors.white,
-                  letterSpacing: 2.0,
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
+            SizedBox(height: 180),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/image.jpg'),
+                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
                   ),
 
@@ -69,7 +58,7 @@ class _OutingState extends State<Outing> {
                   SizedBox(height: 30),
 
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/image.jpg'),
+                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
                   ),
 

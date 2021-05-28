@@ -14,7 +14,7 @@ class ButtonWidget extends StatelessWidget {
       ):super(key: key);
 
   @override
-  Widget build(BuildContext context) =>ElevatedButton(
+  Widget build(BuildContext context) =>TextButton(
     child: Text(
       text,
       style: TextStyle(
@@ -22,6 +22,7 @@ class ButtonWidget extends StatelessWidget {
       ),
     ),
     style: ButtonStyle(
+     
       backgroundColor: MaterialStateProperty.resolveWith<Color>(
       (Set<MaterialState> states) {
         if (states.contains(MaterialState.pressed))
