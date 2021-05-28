@@ -49,7 +49,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
         ),
         child: Column(
           children: [
-            SizedBox(height: 150),
+            SizedBox(height: 180),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

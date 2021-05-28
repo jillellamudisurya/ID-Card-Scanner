@@ -46,7 +46,7 @@ class _SecsuccessState extends State<Secsuccess> {
         ),
         child: Column(
           children: [
-            SizedBox(height: 150),
+            SizedBox(height: 180),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
