@@ -12,7 +12,7 @@ class _OutingStatsState extends State<OutingStats> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
       ),

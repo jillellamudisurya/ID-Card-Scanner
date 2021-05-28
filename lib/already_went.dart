@@ -19,36 +19,26 @@ class _WentoutState extends State<Wentout> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
-        actions: <Widget>[
-          TextButton.icon(
-              onPressed: () async {
-                await AlertDialogs2.yesCancelDialog(
-                    context, 'Sign Out', 'Are You Sure ?');
-              },
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Signout',
-                style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.white,
-                    backgroundColor: Colors.black),
-              ))
-        ],
       ),
       body: Column(
         children: [
-          Text(
-            'Already went ' +
-                state +
-                '\nPlease scan ' +
-                (state == 'Out' ? 'In' : 'Out'),
+          SizedBox(height: 50,),
+          Center(
+            child: Text(
+              'Already went ' +
+                  state +
+                  '\nPlease scan ' +
+                  (state == 'Out' ? 'In' : 'Out'),
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
+          SizedBox(height: 50,),
           ElevatedButton.icon(
             onPressed: () {
               Navigator.pushReplacement(
@@ -76,27 +66,9 @@ class _OutsiderState extends State<Outsider> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
-        actions: <Widget>[
-          TextButton.icon(
-              onPressed: () async {
-                await AlertDialogs2.yesCancelDialog(
-                    context, 'Sign Out', 'Are You Sure ?');
-              },
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Signout',
-                style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.white,
-                    backgroundColor: Colors.black),
-              ))
-        ],
       ),
       body: Column(
         children: [

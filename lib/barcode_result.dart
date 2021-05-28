@@ -16,18 +16,19 @@ class _BarcodeResultState extends State<BarcodeResult> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
       ),
       body: Container(
+        padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                colors: [Colors.black, Colors.grey, Colors.black])),
+          image: DecorationImage(
+              image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
+        ),
         child: Column(
           children: [
-            SizedBox(height: 70),
+            SizedBox(height: 170),
             Center(
               child: Text(
                 'SUCCESSFUL',
@@ -44,7 +45,7 @@ class _BarcodeResultState extends State<BarcodeResult> {
               'The Result of SCAN DATA is:: ',
               style: TextStyle(
                 fontSize: 25.0,
-                color: Colors.white,
+                color: Colors.red,
               ),
             )),
             SizedBox(height: 30.0),
