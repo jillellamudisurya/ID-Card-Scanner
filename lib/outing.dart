@@ -31,12 +31,15 @@ class _OutingState extends State<Outing> {
               image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 180),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  SizedBox(
+                    height: 60,
+                  ),
                   CircleAvatar(
                     backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
