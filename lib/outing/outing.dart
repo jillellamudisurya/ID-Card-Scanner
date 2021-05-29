@@ -4,7 +4,6 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:idcardscanner/services/allDb.dart';
 import 'package:idcardscanner/misc/button_widget.dart';
 import 'package:idcardscanner/errors/login_alert.dart';
-import 'package:idcardscanner/security/secSideNav.dart';
 
 String barcode = '-1';
 
@@ -28,7 +27,6 @@ class _OutingState extends State<Outing> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(

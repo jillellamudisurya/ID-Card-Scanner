@@ -1,21 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:idcardscanner/misc/loading.dart';
 import 'package:idcardscanner/misc/user.dart';
 import 'package:idcardscanner/outputs/table.dart';
-import 'package:idcardscanner/misc/loading.dart';
+import 'package:provider/provider.dart';
 
-class StudData extends StatefulWidget {
+class LeaveStud extends StatefulWidget {
   @override
-  _StudDataState createState() => _StudDataState();
+  _LeaveStudState createState() => _LeaveStudState();
 }
 
-class _StudDataState extends State<StudData> {
+class _LeaveStudState extends State<LeaveStud> {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<QuerySnapshot>(context);
-
-    Future<List<StudentOut>> outing() async {
+    Future<List<StudentOut>> leave() async {
       List<StudentOut> studData = [];
       for (var i in data.documents) {
         DocumentSnapshot snap = await Firestore.instance
@@ -40,7 +39,7 @@ class _StudDataState extends State<StudData> {
     }
 
     return FutureBuilder<List<StudentOut>>(
-      future: outing(),
+      future: leave(),
       builder:
           (BuildContext context, AsyncSnapshot<List<StudentOut>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:idcardscanner/security/secSideNav.dart';
 import 'package:idcardscanner/services/allDb.dart';
 import 'package:idcardscanner/misc/button_widget.dart';
 import 'package:idcardscanner/errors/login_alert.dart';
 
 String barcode = '-1';
+
 // ignore: must_be_immutable
 class Leave extends StatefulWidget {
   String name;
@@ -27,7 +27,6 @@ class _LeaveState extends State<Leave> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
@@ -105,7 +104,7 @@ class _LeaveState extends State<Leave> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CallDbOut(barcode, 'Out')));
+                  builder: (context) => CallDbLeave(barcode, 'Out')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
@@ -130,7 +129,7 @@ class _LeaveState extends State<Leave> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CallDbOut(barcode, 'In')));
+                  builder: (context) => CallDbLeave(barcode, 'In')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
