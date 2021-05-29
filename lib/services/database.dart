@@ -5,9 +5,12 @@ import 'package:idcardscanner/services/auth.dart';
 
 class DatabaseService {
   _getDate() {
-    var date = new DateTime.now().toString();
-    var dateParse = DateTime.parse(date);
-    return "${dateParse.day}-${dateParse.month}-${dateParse.year}";
+    var date = new DateTime.now();
+    return date.day.toString().padLeft(2, '0') +
+        "-" +
+        date.month.toString().padLeft(2, "0") +
+        "-" +
+        date.year.toString();
   }
 
   Future<int> outing(String scan, String state) async {
@@ -20,8 +23,18 @@ class DatabaseService {
     }
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     var dateTime = DateTime.now();
-    var timeNow =
-        "${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.ceil()}";
+    var timeNow = dateTime.day.toString().padLeft(2, "0") +
+        "-" +
+        dateTime.month.toString().padLeft(2, "0") +
+        "-" +
+        dateTime.year.toString() +
+        " " +
+        dateTime.hour.toString().padLeft(2, "0") +
+        ":" +
+        dateTime.minute.toString().padLeft(2, "0") +
+        ":" +
+        dateTime.second.toString().padLeft(2, "0") +
+        ":";
     if (state == 'Out') {
       var collec = outingOut
           .document('Outing')
