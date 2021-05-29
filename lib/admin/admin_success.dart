@@ -41,7 +41,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
                 style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.white,
-                    backgroundColor: Colors.black),
+                    backgroundColor: Color(0xff34456e)),
               ))
         ],
       ),
