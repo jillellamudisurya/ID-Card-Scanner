@@ -1,6 +1,6 @@
 class User {
-  final String uid, name;
-  User({this.uid, this.name});
+  final String uid, name, img;
+  User({this.uid, this.name, this.img});
 }
 
 class StudentOut {

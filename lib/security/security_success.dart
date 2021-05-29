@@ -6,15 +6,15 @@ import 'package:idcardscanner/security/secSideNav.dart';
 
 // ignore: must_be_immutable
 class Secsuccess extends StatefulWidget {
-  String name;
-  Secsuccess(this.name);
+  String name, img;
+  Secsuccess(this.name, this.img);
   @override
-  _SecsuccessState createState() => _SecsuccessState(name);
+  _SecsuccessState createState() => _SecsuccessState(name, img);
 }
 
 class _SecsuccessState extends State<Secsuccess> {
-  String name;
-  _SecsuccessState(this.name);
+  String name, img;
+  _SecsuccessState(this.name, this.img);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +42,7 @@ class _SecsuccessState extends State<Secsuccess> {
               ))
         ],
       ),
-      drawer: SecSideNav(name),
+      drawer: SecSideNav(name, img),
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/misc/user.dart';
 
 class MyTable extends StatefulWidget {
-  MyTable({@required this.studData});
+  MyTable({@required this.studData, @required this.columns});
   final List<StudentOut> studData;
+  final List<String> columns;
   @override
   _MyTableState createState() => _MyTableState();
 }
@@ -14,16 +15,7 @@ class _MyTableState extends State<MyTable> {
 
   @override
   Widget build(BuildContext context) {
-    var columns = [
-      'ID',
-      'Name',
-      'Phone',
-      'Class',
-      'Room',
-      'OutTime',
-      'Intime',
-      'Scanned By'
-    ];
+    var columns = widget.columns;
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
@@ -46,16 +38,15 @@ class _MyTableState extends State<MyTable> {
           ))
       .toList();
   List<DataRow> getRows(List<StudentOut> users) => users.map((StudentOut stud) {
-        var cells = [
-          stud.id,
-          stud.name,
-          stud.phone,
-          stud.classR,
-          stud.room,
-          stud.outTime,
-          stud.inTime,
-          stud.scannedBy
-        ];
+        var cells = [];
+        if (stud.classR != null) cells.add(stud.classR);
+        if (stud.id != null) cells.add(stud.id);
+        if (stud.inTime != null) cells.add(stud.inTime);
+        if (stud.name != null) cells.add(stud.name);
+        if (stud.outTime != null) cells.add(stud.outTime);
+        if (stud.phone != null) cells.add(stud.phone);
+        if (stud.room != null) cells.add(stud.room);
+        if (stud.scannedBy != null) cells.add(stud.scannedBy);
         return DataRow(cells: getCells(cells));
       }).toList();
 

@@ -48,7 +48,19 @@ class _LeaveStudState extends State<LeaveStud> {
           if (snapshot.hasError)
             return Center(child: Text('Error: ${snapshot.error}'));
           else
-            return MyTable(studData: snapshot.data);
+            return MyTable(
+              studData: snapshot.data,
+              columns: [
+                'ID',
+                'Name',
+                'Phone',
+                'Class',
+                'Room',
+                'OutTime',
+                'Intime',
+                'Scanned By'
+              ],
+            );
         }
       },
     );

@@ -17,9 +17,9 @@ class Wrapper extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data) {
-              return Adminsuccess(user.name);
+              return Adminsuccess(user.name, user.img);
             } else {
-              return Secsuccess(user.name);
+              return Secsuccess(user.name, user.img);
             }
           } else {
             return Container();

@@ -7,7 +7,7 @@ class AuthService {
 
   User _userFromFB(FirebaseUser user) {
     return user != null
-        ? new User(uid: user.uid, name: user.displayName)
+        ? new User(uid: user.uid, name: user.displayName, img: user.photoUrl)
         : null;
   }
 

@@ -2,32 +2,32 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class SideNav extends StatefulWidget {
-  String name;
-  SideNav(this.name);
+  String name, img;
+  SideNav(this.name, this.img);
   @override
-  _SideNavState createState() => _SideNavState(name);
+  _SideNavState createState() => _SideNavState(name, img);
 }
 
 class _SideNavState extends State<SideNav> {
-  String name;
-  _SideNavState(this.name);
+  String name, img;
+  _SideNavState(this.name, this.img);
   @override
   Widget build(BuildContext context) {
-    return DisplayNav(name);
+    return DisplayNav(name, img);
   }
 }
 
 // ignore: must_be_immutable
 class DisplayNav extends StatefulWidget {
-  String name;
-  DisplayNav(this.name);
+  String name, img;
+  DisplayNav(this.name, this.img);
   @override
-  _DisplayNavState createState() => _DisplayNavState(name);
+  _DisplayNavState createState() => _DisplayNavState(name, img);
 }
 
 class _DisplayNavState extends State<DisplayNav> {
-  String name;
-  _DisplayNavState(this.name);
+  String name, img;
+  _DisplayNavState(this.name, this.img);
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -35,14 +35,21 @@ class _DisplayNavState extends State<DisplayNav> {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          SizedBox(
+          Container(
             height: height * 0.2,
-            child: Container(
-              child: Text(
-                name,
-                textAlign: TextAlign.center,
-              ),
-              color: Colors.amber,
+            color: Color(0xff34456e),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(img),
+                  radius: 50.0,
+                ),
+                Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
+                ),
+              ],
             ),
           ),
           Divider(color: Colors.black, height: 0),

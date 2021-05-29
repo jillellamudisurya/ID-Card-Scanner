@@ -6,16 +6,16 @@ import 'package:idcardscanner/admin/sideNav.dart';
 
 // ignore: must_be_immutable
 class Adminsuccess extends StatefulWidget {
-  String name;
+  String name, img;
   // this is constructor
-  Adminsuccess(this.name);
+  Adminsuccess(this.name, this.img);
   @override
-  _AdminsuccessState createState() => _AdminsuccessState(name);
+  _AdminsuccessState createState() => _AdminsuccessState(name, img);
 }
 
 class _AdminsuccessState extends State<Adminsuccess> {
-  String title = 'AlertDialog2', name;
-  _AdminsuccessState(this.name);
+  String title = 'AlertDialog2', name, img;
+  _AdminsuccessState(this.name, this.img);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
               ))
         ],
       ),
-      drawer: SideNav(name),
+      drawer: SideNav(name, img),
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(

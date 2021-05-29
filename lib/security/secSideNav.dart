@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:idcardscanner/security/todayOut.dart';
 
 // ignore: must_be_immutable
 class SecSideNav extends StatefulWidget {
-  String name;
-  SecSideNav(this.name);
+  String name, img;
+  SecSideNav(this.name, this.img);
   @override
-  _SecSideNavState createState() => _SecSideNavState(name);
+  _SecSideNavState createState() => _SecSideNavState(name, img);
 }
 
 class _SecSideNavState extends State<SecSideNav> {
-  String name;
-  _SecSideNavState(this.name);
+  String name, img;
+  _SecSideNavState(this.name, this.img);
   @override
   Widget build(BuildContext context) {
-    return DisplayNav(name);
+    return DisplayNav(name, img);
   }
 }
 
 // ignore: must_be_immutable
 class DisplayNav extends StatefulWidget {
-  String name;
-  DisplayNav(this.name);
+  String name, img;
+  DisplayNav(this.name, this.img);
   @override
-  _DisplayNavState createState() => _DisplayNavState(name);
+  _DisplayNavState createState() => _DisplayNavState(name, img);
 }
 
 class _DisplayNavState extends State<DisplayNav> {
-  String name;
-  _DisplayNavState(this.name);
+  String name, img;
+  _DisplayNavState(this.name, this.img);
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -35,25 +36,36 @@ class _DisplayNavState extends State<DisplayNav> {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          SizedBox(
+          Container(
             height: height * 0.2,
-            child: Container(
-              child: Text(
-                name,
-                textAlign: TextAlign.center,
-              ),
-              color: Colors.blueGrey,
+            color: Color(0xff34456e),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(img),
+                  radius: 50.0,
+                ),
+                Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
+                ),
+              ],
             ),
           ),
           Divider(color: Colors.black, height: 0),
           ListTile(
-            selectedTileColor: Colors.blueGrey,
             leading: Icon(
               Icons.person,
               color: Colors.deepOrange,
             ),
-            title: Text('View Today'),
-            onTap: () {},
+            title: Text('Today Outing'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => TodayOut()));
+            },
           ),
         ],
       ),

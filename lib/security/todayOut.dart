@@ -1,16 +1,41 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:idcardscanner/misc/loading.dart';
 import 'package:idcardscanner/misc/user.dart';
 import 'package:idcardscanner/outputs/table.dart';
-import 'package:idcardscanner/misc/loading.dart';
+import 'package:idcardscanner/services/database.dart';
+import 'package:provider/provider.dart';
 
-class StudData extends StatefulWidget {
+class TodayOut extends StatefulWidget {
   @override
-  _StudDataState createState() => _StudDataState();
+  _TodayOutState createState() => _TodayOutState();
 }
 
-class _StudDataState extends State<StudData> {
+class _TodayOutState extends State<TodayOut> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<QuerySnapshot>.value(
+      initialData: null,
+      value: DatabaseService().stud,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('ID Card Scanner'),
+          backgroundColor: Color(0xff34456e),
+          centerTitle: true,
+          elevation: 0.0,
+        ),
+        body: TodayData(),
+      ),
+    );
+  }
+}
+
+class TodayData extends StatefulWidget {
+  @override
+  _TodayDataState createState() => _TodayDataState();
+}
+
+class _TodayDataState extends State<TodayData> {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<QuerySnapshot>(context);
@@ -24,11 +49,8 @@ class _StudDataState extends State<StudData> {
             .get();
         try {
           studData.add(StudentOut(
-              classR: snap.data['class'],
               id: snap.data['id'],
               name: snap.data['name'],
-              phone: snap.data['phone'],
-              room: snap.data['room'],
               outTime: i.data['OutTime'],
               inTime: i.data['InTime'],
               scannedBy: i.data['ScannedBy']));
@@ -51,16 +73,7 @@ class _StudDataState extends State<StudData> {
           else
             return MyTable(
               studData: snapshot.data,
-              columns: [
-                'ID',
-                'Name',
-                'Phone',
-                'Class',
-                'Room',
-                'OutTime',
-                'Intime',
-                'Scanned By'
-              ],
+              columns: ['ID', 'Name', 'OutTime', 'Intime', 'Scanned By'],
             );
         }
       },
