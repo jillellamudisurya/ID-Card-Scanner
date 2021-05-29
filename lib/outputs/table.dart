@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/misc/user.dart';
 
 class MyTable extends StatefulWidget {
+  MyTable({@required this.studData});
   final List<StudentOut> studData;
-  MyTable({this.studData});
   @override
   _MyTableState createState() => _MyTableState();
 }
@@ -11,29 +11,29 @@ class MyTable extends StatefulWidget {
 class _MyTableState extends State<MyTable> {
   int sortColumnIndex = 0;
   bool isAscending = false;
-  List<StudentOut> studDatacopy;
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     var columns = [
-      'id',
+      'ID',
       'Name',
-      'phone',
-      'class',
-      'room',
+      'Phone',
+      'Class',
+      'Room',
       'OutTime',
       'Scanned By'
     ];
-    this.studDatacopy = widget.studData.toList();
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
+      physics: BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
       child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           child: DataTable(
               sortAscending: isAscending,
               sortColumnIndex: sortColumnIndex,
               columns: getColumns(columns),
-              rows: getRows(studDatacopy))),
+              rows: getRows(widget.studData))),
     );
   }
 
@@ -60,12 +60,25 @@ class _MyTableState extends State<MyTable> {
 
   void onSort(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
-      studDatacopy.sort((s1, s2) => compareString(ascending, s1.id, s1.id));
+      widget.studData.sort((s1, s2) => compareString(ascending, s1.id, s2.id));
     } else if (columnIndex == 1) {
-      studDatacopy.sort((s1, s2) => compareString(ascending, s1.name, s2.name));
+      widget.studData
+          .sort((s1, s2) => compareString(ascending, s1.name, s2.name));
     } else if (columnIndex == 2) {
-      studDatacopy
-          .sort((s1, s2) => compareString(ascending, s1.phone, s1.phone));
+      widget.studData
+          .sort((s1, s2) => compareString(ascending, s1.phone, s2.phone));
+    } else if (columnIndex == 3) {
+      widget.studData
+          .sort((s1, s2) => compareString(ascending, s1.classR, s2.classR));
+    } else if (columnIndex == 4) {
+      widget.studData
+          .sort((s1, s2) => compareString(ascending, s1.room, s2.room));
+    } else if (columnIndex == 5) {
+      widget.studData
+          .sort((s1, s2) => compareString(ascending, s1.outTime, s2.outTime));
+    } else if (columnIndex == 6) {
+      widget.studData.sort(
+          (s1, s2) => compareString(ascending, s1.scannedBy, s2.scannedBy));
     }
 
     setState(() {
