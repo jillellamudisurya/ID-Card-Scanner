@@ -11,7 +11,6 @@ class MyTable extends StatefulWidget {
 class _MyTableState extends State<MyTable> {
   int sortColumnIndex = 0;
   bool isAscending = false;
-  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
