@@ -13,15 +13,16 @@ class DatabaseService {
         date.year.toString();
   }
 
-  Future<int> outing(String scan, String state) async {
-    final CollectionReference outingOut =
-        Firestore.instance.collection(_getDate());
-    DocumentSnapshot snap =
-        await Firestore.instance.collection('Students_Ph').document(scan).get();
-    if (snap == null || !snap.exists) {
-      return -1;
-    }
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+  _getYesterday() {
+    var date = DateTime.now().subtract(Duration(days: 1));
+    return date.day.toString().padLeft(2, '0') +
+        "-" +
+        date.month.toString().padLeft(2, "0") +
+        "-" +
+        date.year.toString();
+  }
+
+  _getTime() {
     var dateTime = DateTime.now();
     var timeNow = dateTime.day.toString().padLeft(2, "0") +
         "-" +
@@ -35,6 +36,19 @@ class DatabaseService {
         ":" +
         dateTime.second.toString().padLeft(2, "0") +
         ":";
+    return timeNow;
+  }
+
+  Future<int> outing(String scan, String state) async {
+    final CollectionReference outingOut =
+        Firestore.instance.collection(_getDate());
+    DocumentSnapshot snap =
+        await Firestore.instance.collection('Students_Ph').document(scan).get();
+    if (snap == null || !snap.exists) {
+      return -1;
+    }
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    var timeNow = _getTime();
     if (state == 'Out') {
       var collec = outingOut
           .document('Outing')
@@ -64,8 +78,7 @@ class DatabaseService {
         }
         return 0;
       }
-      var date = DateTime.now().subtract(Duration(days: 1));
-      String yesterday = "${date.day}-${date.month}-${date.year}";
+      String yesterday = _getYesterday();
       final CollectionReference yesterdayOut =
           Firestore.instance.collection(yesterday);
       var coll = yesterdayOut
@@ -97,10 +110,7 @@ class DatabaseService {
         .collection('Security')
         .document(user.uid)
         .get();
-    var dateTime = DateTime.now();
-    var timeNow =
-        "${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.ceil()}";
-
+    var timeNow = _getTime();
     var collec =
         leaveOut.document('Leave').collection(state).document(snap.data['id']);
     DocumentSnapshot collecSnap = await collec.get();
