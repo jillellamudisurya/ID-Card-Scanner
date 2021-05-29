@@ -1,56 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:idcardscanner/security/secSideNav.dart';
 import 'package:idcardscanner/services/allDb.dart';
 import 'package:idcardscanner/misc/button_widget.dart';
 import 'package:idcardscanner/errors/login_alert.dart';
 
+String barcode = '-1';
+// ignore: must_be_immutable
 class Leave extends StatefulWidget {
+  String name;
+  Leave(this.name);
   @override
   _LeaveState createState() => _LeaveState();
 }
 
 class _LeaveState extends State<Leave> {
-  String barcode = 'Unknown';
+  String name;
+  //String barcode = 'Unknown';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: Text('ID Card Scanner'),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
       ),
+      drawer: SecSideNav(name),
       body: Container(
+        padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                colors: [Colors.black, Colors.grey, Colors.black])),
+          image: DecorationImage(
+              image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                'LEAVE',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                  color: Colors.white,
-                  letterSpacing: 2.0,
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  SizedBox(
+                    height: 60,
+                  ),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/image.jpg'),
+                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
                   ),
+
                   SizedBox(height: 30),
+
                   // Text(
                   //   '$barcode',
                   //   style: TextStyle(
@@ -59,15 +59,18 @@ class _LeaveState extends State<Leave> {
                   //   ),
                   // ),
                   ButtonWidget(
-                    onClicked: scanBarcodeLeaveOut,
+                    onClicked: scanBarcodeOut,
                     text: 'OUT',
                   ),
                   SizedBox(height: 30),
+
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/image.jpg'),
+                    backgroundImage: AssetImage('assets/adminsecurity.jpg'),
                     radius: 50.0,
                   ),
+
                   SizedBox(height: 30),
+
                   // Text(
                   //   '$barcode',
                   //   style: TextStyle(
@@ -76,7 +79,7 @@ class _LeaveState extends State<Leave> {
                   //   ),
                   // ),
                   ButtonWidget(
-                    onClicked: scanBarcodeLeaveIn,
+                    onClicked: scanBarcodeIn,
                     text: 'IN',
                   ),
                 ],
@@ -88,10 +91,10 @@ class _LeaveState extends State<Leave> {
     );
   }
 
-  Future<void> scanBarcodeLeaveOut() async {
+  Future<void> scanBarcodeOut() async {
     try {
       final barcode = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666",
+        "#34456e",
         "Cancel",
         true,
         ScanMode.BARCODE,
@@ -102,7 +105,7 @@ class _LeaveState extends State<Leave> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CallDbLeave(barcode, 'Out')));
+                  builder: (context) => CallDbOut(barcode, 'Out')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
@@ -113,10 +116,10 @@ class _LeaveState extends State<Leave> {
     }
   }
 
-  Future<void> scanBarcodeLeaveIn() async {
+  Future<void> scanBarcodeIn() async {
     try {
       final barcode = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666",
+        "#34456e",
         "Cancel",
         true,
         ScanMode.BARCODE,
@@ -127,7 +130,7 @@ class _LeaveState extends State<Leave> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CallDbLeave(barcode, 'In')));
+                  builder: (context) => CallDbOut(barcode, 'In')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');

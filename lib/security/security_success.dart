@@ -113,7 +113,7 @@ class _SecsuccessState extends State<Secsuccess> {
                   TextButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Leave()));
+                          MaterialPageRoute(builder: (context) => Leave(name)));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),
