@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idcardscanner/errors/error.dart';
 import 'package:idcardscanner/wrapper.dart';
 
 // ignore: must_be_immutable
@@ -25,7 +24,9 @@ class _WentoutState extends State<Wentout> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           Center(
             child: Text(
               'Already went ' +
@@ -38,7 +39,9 @@ class _WentoutState extends State<Wentout> {
               ),
             ),
           ),
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           ElevatedButton.icon(
             onPressed: () {
               Navigator.pushReplacement(

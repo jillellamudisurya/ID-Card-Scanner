@@ -30,7 +30,8 @@ class _StudDataState extends State<StudData> {
               phone: snap.data['phone'],
               room: snap.data['room'],
               outTime: i.data['OutTime'],
-              scannedBy: i.data['Scanned By Name']));
+              inTime: i.data['Intime'],
+              scannedBy: i.data['ScannedBy']));
         } catch (e) {
           print(e);
         }

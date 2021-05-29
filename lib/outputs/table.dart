@@ -22,6 +22,7 @@ class _MyTableState extends State<MyTable> {
       'class',
       'room',
       'OutTime',
+      'Intime',
       'Scanned By'
     ];
     this.studDatacopy = widget.studData.toList();
@@ -53,6 +54,7 @@ class _MyTableState extends State<MyTable> {
           stud.classR,
           stud.room,
           stud.outTime,
+          stud.inTime,
           stud.scannedBy
         ];
         return DataRow(cells: getCells(cells));
