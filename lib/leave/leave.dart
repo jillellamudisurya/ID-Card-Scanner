@@ -27,7 +27,7 @@ class _LeaveState extends State<Leave> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      drawer: SecSideNav(name),
+      
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(

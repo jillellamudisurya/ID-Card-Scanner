@@ -28,7 +28,7 @@ class _OutingState extends State<Outing> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      drawer: SecSideNav(name),
+      
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
