@@ -147,9 +147,9 @@ class DatabaseService {
     }
   }
 
-  Stream<QuerySnapshot> get stud {
+  Stream<QuerySnapshot> stud(String date) {
     final CollectionReference sample = Firestore.instance
-        .collection(_getDate())
+        .collection(date)
         .document("Outing")
         .collection("Out");
     return sample.snapshots();

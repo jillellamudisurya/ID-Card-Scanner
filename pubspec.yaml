@@ -32,6 +32,7 @@ dependencies:
   cloud_firestore: ^0.12.9+4
   provider: ^5.0.0
   flutter_spinkit: ^4.1.2
+  syncfusion_flutter_datepicker: ^19.1.65-beta
 
 
 

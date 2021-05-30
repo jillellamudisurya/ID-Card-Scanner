@@ -12,11 +12,20 @@ class TodayOut extends StatefulWidget {
 }
 
 class _TodayOutState extends State<TodayOut> {
+  _getDateFromDate(DateTime dt) {
+    var date = dt;
+    return date.day.toString().padLeft(2, '0') +
+        "-" +
+        date.month.toString().padLeft(2, "0") +
+        "-" +
+        date.year.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       initialData: null,
-      value: DatabaseService().stud,
+      value: DatabaseService().stud(_getDateFromDate(DateTime.now())),
       child: Scaffold(
         appBar: AppBar(
           title: Text('ID Card Scanner'),

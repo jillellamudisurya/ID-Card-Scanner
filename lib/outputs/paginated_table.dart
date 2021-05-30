@@ -87,6 +87,8 @@ class DTS extends DataTableSource {
   DataRow getRow(int index) {
     final stud = studData[index];
     List<DataCell> cells = [];
+    Color r = Colors.white;
+    if (stud.inTime == 'NOT RETURNED') r = Colors.red[300];
     if (stud.id != null) cells.add(DataCell(Text(stud.id)));
     if (stud.name != null) cells.add(DataCell(Text(stud.name)));
     if (stud.phone != null) cells.add(DataCell(Text(stud.phone)));
@@ -95,7 +97,9 @@ class DTS extends DataTableSource {
     if (stud.outTime != null) cells.add(DataCell(Text(stud.outTime)));
     if (stud.inTime != null) cells.add(DataCell(Text(stud.inTime)));
     if (stud.scannedBy != null) cells.add(DataCell(Text(stud.scannedBy)));
-    return DataRow.byIndex(index: index, cells: cells);
+    MaterialStateProperty<Color> s =
+        MaterialStateColor.resolveWith((states) => r);
+    return DataRow.byIndex(index: index, cells: cells, color: s);
   }
 
   @override

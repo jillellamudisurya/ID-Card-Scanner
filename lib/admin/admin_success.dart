@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/errors/error.dart';
 import 'package:idcardscanner/leave/LeaveStats.dart';
-import 'package:idcardscanner/outing/OutingStats.dart';
 import 'package:idcardscanner/admin/sideNav.dart';
+import 'package:idcardscanner/outing/select_date.dart';
 
 // ignore: must_be_immutable
 class Adminsuccess extends StatefulWidget {
@@ -70,7 +70,7 @@ class _AdminsuccessState extends State<Adminsuccess> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OutingStats()));
+                              builder: (context) => SelectDate()));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(0),

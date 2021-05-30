@@ -5,6 +5,8 @@ import 'package:idcardscanner/services/database.dart';
 import 'package:idcardscanner/outputs/stud_data.dart';
 
 class OutData extends StatefulWidget {
+  final String date;
+  OutData({this.date});
   @override
   _OutDataState createState() => _OutDataState();
 }
@@ -14,7 +16,7 @@ class _OutDataState extends State<OutData> {
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       initialData: null,
-      value: DatabaseService().stud,
+      value: DatabaseService().stud(widget.date),
       child: Scaffold(
         body: StudData(),
       ),

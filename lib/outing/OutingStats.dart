@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/outing/out_data.dart';
 
 class OutingStats extends StatefulWidget {
+  final String date;
+  OutingStats({this.date});
   @override
   _OutingStatsState createState() => _OutingStatsState();
 }
@@ -16,7 +18,9 @@ class _OutingStatsState extends State<OutingStats> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: OutData(),
+      body: OutData(
+        date: widget.date,
+      ),
     );
   }
 }
