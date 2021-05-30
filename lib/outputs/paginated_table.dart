@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/misc/user.dart';
 
 class MyTable extends StatefulWidget {
-  MyTable({@required this.studData});
+  MyTable({@required this.studData, @required this.columns});
   final List<StudentOut> studData;
+  final List<String> columns;
   @override
   _MyTableState createState() => _MyTableState();
 }
@@ -21,16 +22,7 @@ class _MyTableState extends State<MyTable> {
     var isRowCountLessDefaultRowsPerPage = tableItemsCount < defaultRowsPerPage;
     _rowsPerPage =
         isRowCountLessDefaultRowsPerPage ? tableItemsCount : defaultRowsPerPage;
-    var columns = [
-      'ID',
-      'Name',
-      'Phone',
-      'Class',
-      'Room',
-      'OutTime',
-      'Intime',
-      'Scanned By'
-    ];
+    var columns = widget.columns;
     return PaginatedDataTable(
       onRowsPerPageChanged: isRowCountLessDefaultRowsPerPage
           ? null
@@ -94,16 +86,16 @@ class DTS extends DataTableSource {
   @override
   DataRow getRow(int index) {
     final stud = studData[index];
-    return DataRow.byIndex(index: index, cells: [
-      DataCell(Text(stud.id)),
-      DataCell(Text(stud.name)),
-      DataCell(Text(stud.phone)),
-      DataCell(Text(stud.classR)),
-      DataCell(Text(stud.room)),
-      DataCell(Text(stud.outTime)),
-      DataCell(Text(stud.inTime)),
-      DataCell(Text(stud.scannedBy))
-    ]);
+    List<DataCell> cells = [];
+    if (stud.id != null) cells.add(DataCell(Text(stud.id)));
+    if (stud.name != null) cells.add(DataCell(Text(stud.name)));
+    if (stud.phone != null) cells.add(DataCell(Text(stud.phone)));
+    if (stud.classR != null) cells.add(DataCell(Text(stud.classR)));
+    if (stud.room != null) cells.add(DataCell(Text(stud.room)));
+    if (stud.outTime != null) cells.add(DataCell(Text(stud.outTime)));
+    if (stud.inTime != null) cells.add(DataCell(Text(stud.inTime)));
+    if (stud.scannedBy != null) cells.add(DataCell(Text(stud.scannedBy)));
+    return DataRow.byIndex(index: index, cells: cells);
   }
 
   @override

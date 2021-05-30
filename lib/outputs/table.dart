@@ -39,13 +39,13 @@ class _MyTableState extends State<MyTable> {
       .toList();
   List<DataRow> getRows(List<StudentOut> users) => users.map((StudentOut stud) {
         var cells = [];
-        if (stud.classR != null) cells.add(stud.classR);
         if (stud.id != null) cells.add(stud.id);
-        if (stud.inTime != null) cells.add(stud.inTime);
         if (stud.name != null) cells.add(stud.name);
-        if (stud.outTime != null) cells.add(stud.outTime);
         if (stud.phone != null) cells.add(stud.phone);
+        if (stud.classR != null) cells.add(stud.classR);
         if (stud.room != null) cells.add(stud.room);
+        if (stud.outTime != null) cells.add(stud.outTime);
+        if (stud.inTime != null) cells.add(stud.inTime);
         if (stud.scannedBy != null) cells.add(stud.scannedBy);
         return DataRow(cells: getCells(cells));
       }).toList();

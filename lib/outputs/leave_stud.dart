@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/misc/loading.dart';
 import 'package:idcardscanner/misc/user.dart';
-import 'package:idcardscanner/outputs/table.dart';
 import 'package:provider/provider.dart';
+import 'package:idcardscanner/outputs/paginated_table.dart';
 
 class LeaveStud extends StatefulWidget {
   @override
@@ -45,9 +45,7 @@ class _LeaveStudState extends State<LeaveStud> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Loading();
         } else {
-          if (snapshot.hasError)
-            return Center(child: Text('Error: ${snapshot.error}'));
-          else
+          if (snapshot.hasData)
             return MyTable(
               studData: snapshot.data,
               columns: [
@@ -61,6 +59,7 @@ class _LeaveStudState extends State<LeaveStud> {
                 'Scanned By'
               ],
             );
+          return Container();
         }
       },
     );
