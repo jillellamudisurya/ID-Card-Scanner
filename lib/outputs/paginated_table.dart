@@ -87,7 +87,7 @@ class DTS extends DataTableSource {
   DataRow getRow(int index) {
     final stud = studData[index];
     List<DataCell> cells = [];
-    Color r = Colors.white;
+    Color r = Colors.red;
     if (stud.inTime == 'NOT RETURNED') r = Colors.red[300];
     if (stud.id != null) cells.add(DataCell(Text(stud.id)));
     if (stud.name != null) cells.add(DataCell(Text(stud.name)));
