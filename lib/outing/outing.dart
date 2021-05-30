@@ -101,10 +101,11 @@ class _OutingState extends State<Outing> {
       if (!mounted) return;
       setState(() async {
         if (barcode != '-1') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CallDbOut(barcode, 'Out')));
+          await AlertDialogs.okDialog(context, "Outing Accepted ", 'Plase scan in to enter into college');
+         // Navigator.push(
+           //   context,
+             // MaterialPageRoute(
+               //   builder: (context) => CallDbOut(barcode, 'Out')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
@@ -126,10 +127,11 @@ class _OutingState extends State<Outing> {
       if (!mounted) return;
       setState(() async {
         if (barcode != '-1') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CallDbOut(barcode, 'In')));
+          await AlertDialogs.okDialog(context, "Already Went In ", 'No More Outing');
+          //Navigator.push(
+            //  context,
+              //MaterialPageRoute(
+                //  builder: (context) => CallDbOut(barcode, 'In')));
         } else {
           await AlertDialogs.okDialog(
               context, 'Scan Error', 'Please Scan Barcode');
