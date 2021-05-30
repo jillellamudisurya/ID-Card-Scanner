@@ -26,6 +26,7 @@ class _LeaveStudState extends State<LeaveStud> {
               classR: snap.data['class'],
               id: snap.data['id'],
               name: snap.data['name'],
+              gender: snap.data['gender'],
               phone: snap.data['phone'],
               room: snap.data['room'],
               outTime: i.data['OutTime'],
@@ -51,6 +52,7 @@ class _LeaveStudState extends State<LeaveStud> {
               columns: [
                 'ID',
                 'Name',
+                'Gender',
                 'Phone',
                 'Class',
                 'Room',

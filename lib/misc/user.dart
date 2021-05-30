@@ -4,7 +4,16 @@ class User {
 }
 
 class StudentOut {
-  final String classR, id, name, phone, room, outTime, scannedBy, inTime;
+  final String classR,
+      id,
+      name,
+      phone,
+      room,
+      outTime,
+      scannedBy,
+      inTime,
+      gender;
+
   StudentOut(
       {this.classR,
       this.id,
@@ -13,5 +22,6 @@ class StudentOut {
       this.room,
       this.outTime,
       this.scannedBy,
-      this.inTime});
+      this.inTime,
+      this.gender});
 }

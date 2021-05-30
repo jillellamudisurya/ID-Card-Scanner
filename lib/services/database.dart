@@ -138,10 +138,15 @@ class DatabaseService {
       }
       return 0;
     } else {
-      if (snapshot.data['isOut'] == true) {
-        leaveOut.document(snap.data['id']).updateData(
-            {'InTime': timeNow, 'ScannedBy': user.displayName, 'isOut': false});
-        return 1;
+      if (snapshot.exists) {
+        if (snapshot.data['isOut'] == true) {
+          leaveOut.document(snap.data['id']).updateData({
+            'InTime': timeNow,
+            'ScannedBy': user.displayName,
+            'isOut': false
+          });
+          return 1;
+        }
       }
       return 0;
     }

@@ -60,6 +60,7 @@ class _TodayDataState extends State<TodayData> {
           studData.add(StudentOut(
               id: snap.data['id'],
               name: snap.data['name'],
+              gender: snap.data['gender'],
               outTime: i.data['OutTime'],
               inTime: i.data['InTime'],
               scannedBy: i.data['ScannedBy']));
@@ -80,7 +81,14 @@ class _TodayDataState extends State<TodayData> {
           if (snapshot.hasData)
             return MyTable(
               studData: snapshot.data,
-              columns: ['ID', 'Name', 'OutTime', 'Intime', 'Scanned By'],
+              columns: [
+                'ID',
+                'Name',
+                'Gender',
+                'OutTime',
+                'Intime',
+                'Scanned By'
+              ],
             );
           return Container();
         }

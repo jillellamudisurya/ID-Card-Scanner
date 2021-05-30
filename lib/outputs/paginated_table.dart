@@ -1,12 +1,15 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/misc/user.dart';
+import 'package:idcardscanner/outputs/storedSuccess.dart';
+import 'package:path_provider/path_provider.dart';
 
 class MyTable extends StatefulWidget {
   MyTable({@required this.studData, @required this.columns});
   final List<StudentOut> studData;
   final List<String> columns;
   @override
-  _MyTableState createState() => _MyTableState();
+  _MyTableState createState() => _MyTableState(studData);
 }
 
 class _MyTableState extends State<MyTable> {
@@ -14,29 +17,149 @@ class _MyTableState extends State<MyTable> {
   int _rowsPerPage1 = PaginatedDataTable.defaultRowsPerPage;
   int sortColumnIndex = 0;
   bool isAscending = false;
+  List<StudentOut> temp;
+  _MyTableState(this.temp);
+  var dts;
+  var tableItemsCount;
+  var defaultRowsPerPage;
+  var isRowCountLessDefaultRowsPerPage;
+  var columns;
+  TextEditingController controller;
+  String _searchResult;
+  Future<String> get _localPath async {
+    final directory = await getExternalStorageDirectory();
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/data.csv');
+  }
+
   @override
   Widget build(BuildContext context) {
-    var dts = DTS(studData: widget.studData);
-    var tableItemsCount = dts.rowCount;
-    var defaultRowsPerPage = PaginatedDataTable.defaultRowsPerPage;
-    var isRowCountLessDefaultRowsPerPage = tableItemsCount < defaultRowsPerPage;
+    dts = DTS(studData: temp);
+    tableItemsCount = dts.rowCount;
+    defaultRowsPerPage = 1;
+    isRowCountLessDefaultRowsPerPage = tableItemsCount < defaultRowsPerPage;
     _rowsPerPage =
-        isRowCountLessDefaultRowsPerPage ? tableItemsCount : defaultRowsPerPage;
-    var columns = widget.columns;
-    return PaginatedDataTable(
-      onRowsPerPageChanged: isRowCountLessDefaultRowsPerPage
-          ? null
-          : (rowCount) {
-              setState(() {
-                _rowsPerPage1 = rowCount;
-              });
-            },
-      sortAscending: isAscending,
-      sortColumnIndex: sortColumnIndex,
-      columns: getColumns(columns),
-      source: dts,
-      rowsPerPage:
-          isRowCountLessDefaultRowsPerPage ? _rowsPerPage : _rowsPerPage1,
+        isRowCountLessDefaultRowsPerPage ? defaultRowsPerPage : tableItemsCount;
+    columns = widget.columns;
+    controller = TextEditingController();
+    _searchResult = '';
+
+    callDTS() {
+      dts = DTS(studData: temp);
+      tableItemsCount = dts.rowCount;
+      defaultRowsPerPage = 1;
+      isRowCountLessDefaultRowsPerPage = tableItemsCount < defaultRowsPerPage;
+      _rowsPerPage = isRowCountLessDefaultRowsPerPage
+          ? defaultRowsPerPage
+          : tableItemsCount;
+      columns = widget.columns;
+      return dts;
+    }
+
+    return ListView(
+      children: [
+        Container(
+            child: ElevatedButton(
+          child: Text('Click to download'),
+          onPressed: () async {
+            final file = await _localFile;
+
+            String data = '';
+            for (var b in columns) {
+              data += b + ",";
+            }
+            data += "\n";
+            for (var stud in temp) {
+              if (stud.id != null) data += stud.id + ",";
+              if (stud.name != null) data += stud.name + ",";
+              if (stud.gender != null) data += stud.gender + ",";
+              if (stud.phone != null) data += stud.phone + ",";
+              if (stud.classR != null) data += stud.classR + ",";
+              if (stud.room != null) data += stud.room + ",";
+              if (stud.outTime != null) data += stud.outTime + ",";
+              if (stud.inTime != null) data += stud.inTime + ",";
+              if (stud.scannedBy != null) data += stud.scannedBy + ",";
+              data += '\n';
+            }
+            file.writeAsString(data);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => StoredSuccess(
+                        'Android/data/com.example.idcardscanner/files/data.csv')));
+          },
+        )),
+        Card(
+          child: new ListTile(
+            leading: new Icon(Icons.search),
+            title: new TextField(
+//                controller: controller,
+                decoration: new InputDecoration(
+                    hintText: 'Search', border: InputBorder.none),
+                onChanged: (value) {
+                  setState(() {
+                    _searchResult = value;
+                    temp = widget.studData
+                        .where((user) =>
+                            user.id
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.name
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.classR
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.inTime
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.outTime
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.phone
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.room
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.scannedBy
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()))
+                        .toList();
+                  });
+                }),
+            // trailing: new IconButton(
+            //   icon: new Icon(Icons.cancel),
+            //   onPressed: () {
+            //     setState(() {
+            //       controller.clear();
+            //       _searchResult = '';
+            //       temp = widget.studData;
+            //     });
+            //   },
+            // ),
+          ),
+        ),
+        PaginatedDataTable(
+          onRowsPerPageChanged: isRowCountLessDefaultRowsPerPage
+              ? null
+              : (rowCount) {
+                  setState(() {
+                    _rowsPerPage1 = rowCount;
+                  });
+                },
+          sortAscending: isAscending,
+          sortColumnIndex: sortColumnIndex,
+          columns: getColumns(columns),
+          source: callDTS(),
+          rowsPerPage:
+              isRowCountLessDefaultRowsPerPage ? _rowsPerPage : _rowsPerPage1,
+        ),
+      ],
     );
   }
 
@@ -83,6 +206,7 @@ class _MyTableState extends State<MyTable> {
 class DTS extends DataTableSource {
   List<StudentOut> studData;
   DTS({@required this.studData});
+
   @override
   DataRow getRow(int index) {
     final stud = studData[index];
@@ -91,6 +215,7 @@ class DTS extends DataTableSource {
     if (stud.inTime == 'NOT RETURNED') r = Colors.red[300];
     if (stud.id != null) cells.add(DataCell(Text(stud.id)));
     if (stud.name != null) cells.add(DataCell(Text(stud.name)));
+    if (stud.gender != null) cells.add(DataCell(Text(stud.gender)));
     if (stud.phone != null) cells.add(DataCell(Text(stud.phone)));
     if (stud.classR != null) cells.add(DataCell(Text(stud.classR)));
     if (stud.room != null) cells.add(DataCell(Text(stud.room)));

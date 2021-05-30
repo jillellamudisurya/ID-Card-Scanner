@@ -34,6 +34,9 @@ dependencies:
   flutter_spinkit: ^4.1.2
   syncfusion_flutter_datepicker: ^19.1.65-beta
 
+  excel: ^1.1.5
+  path_provider:
+
 
 
   # The following adds the Cupertino Icons font to your application.

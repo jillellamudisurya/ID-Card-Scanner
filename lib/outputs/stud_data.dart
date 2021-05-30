@@ -27,6 +27,7 @@ class _StudDataState extends State<StudData> {
               classR: snap.data['class'],
               id: snap.data['id'],
               name: snap.data['name'],
+              gender: snap.data['gender'],
               phone: snap.data['phone'],
               room: snap.data['room'],
               outTime: i.data['OutTime'],
@@ -52,6 +53,7 @@ class _StudDataState extends State<StudData> {
               columns: [
                 'ID',
                 'Name',
+                'Gender',
                 'Phone',
                 'Class',
                 'Room',
