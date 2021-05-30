@@ -22,7 +22,7 @@ class _OutingState extends State<Outing> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ID Card Scanner'),
+        title: Text('OUTING'),
         backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,

@@ -22,7 +22,7 @@ class _LeaveState extends State<Leave> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ID Card Scanner'),
+        title: Text('LEAVE'),
         backgroundColor: Color(0xff34456e),
         centerTitle: true,
         elevation: 0.0,
