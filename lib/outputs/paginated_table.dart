@@ -62,37 +62,6 @@ class _MyTableState extends State<MyTable> {
 
     return ListView(
       children: [
-        Container(
-            child: ElevatedButton(
-          child: Text('Click to download'),
-          onPressed: () async {
-            final file = await _localFile;
-
-            String data = '';
-            for (var b in columns) {
-              data += b + ",";
-            }
-            data += "\n";
-            for (var stud in temp) {
-              if (stud.id != null) data += stud.id + ",";
-              if (stud.name != null) data += stud.name + ",";
-              if (stud.gender != null) data += stud.gender + ",";
-              if (stud.phone != null) data += stud.phone + ",";
-              if (stud.classR != null) data += stud.classR + ",";
-              if (stud.room != null) data += stud.room + ",";
-              if (stud.outTime != null) data += stud.outTime + ",";
-              if (stud.inTime != null) data += stud.inTime + ",";
-              if (stud.scannedBy != null) data += stud.scannedBy + ",";
-              data += '\n';
-            }
-            file.writeAsString(data);
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => StoredSuccess(
-                        'Android/data/com.example.idcardscanner/files/data.csv')));
-          },
-        )),
         Card(
           child: new ListTile(
             leading: new Icon(Icons.search),
@@ -159,6 +128,40 @@ class _MyTableState extends State<MyTable> {
           rowsPerPage:
               isRowCountLessDefaultRowsPerPage ? _rowsPerPage : _rowsPerPage1,
         ),
+        Container(
+            alignment: Alignment.bottomRight,
+            margin: EdgeInsets.only(right: 5),
+            child: FloatingActionButton(
+              child: Icon(Icons.file_download),
+              elevation: 3,
+              onPressed: () async {
+                final file = await _localFile;
+
+                String data = '';
+                for (var b in columns) {
+                  data += b + ",";
+                }
+                data += "\n";
+                for (var stud in temp) {
+                  if (stud.id != null) data += stud.id + ",";
+                  if (stud.name != null) data += stud.name + ",";
+                  if (stud.gender != null) data += stud.gender + ",";
+                  if (stud.phone != null) data += stud.phone + ",";
+                  if (stud.classR != null) data += stud.classR + ",";
+                  if (stud.room != null) data += stud.room + ",";
+                  if (stud.outTime != null) data += stud.outTime + ",";
+                  if (stud.inTime != null) data += stud.inTime + ",";
+                  if (stud.scannedBy != null) data += stud.scannedBy + ",";
+                  data += '\n';
+                }
+                file.writeAsString(data);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => StoredSuccess(
+                            'Android/data/com.example.idcardscanner/files/data.csv')));
+              },
+            )),
       ],
     );
   }
