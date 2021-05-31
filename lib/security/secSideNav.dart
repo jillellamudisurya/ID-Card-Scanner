@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/security/todayOut.dart';
+import 'package:idcardscanner/security/outingCount.dart';
 
 // ignore: must_be_immutable
 class SecSideNav extends StatefulWidget {
@@ -65,6 +66,20 @@ class _DisplayNavState extends State<DisplayNav> {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) => TodayOut()));
+            },
+          ),
+          Divider(color: Colors.black, height: 0),
+          ListTile(
+            leading: Icon(
+              Icons.format_list_numbered,
+              color: Colors.deepOrange,
+            ),
+            title: Text('Outing Count'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => CountToday()));
             },
           ),
         ],

@@ -33,6 +33,7 @@ dependencies:
   provider: ^5.0.0
   flutter_spinkit: ^4.1.2
   syncfusion_flutter_datepicker: ^19.1.65-beta
+  pie_chart: ^3.1.1
 
   excel: ^1.1.5
   path_provider:
