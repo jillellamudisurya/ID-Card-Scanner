@@ -1,16 +1,12 @@
-# idcardscanner
+**BARCODE BASED LEAVE & OUTING MANAGEMENT SYSTEM**
 
-Barcode Based Leave Management System
+The leave management system is not so efficient and time consuming. Currently, the leave and outing management system need to be managed manually by the security personnel. This leads to data inconsistency and organizations cannot manage the data efficiently. The financial cost of the current system can be high, as it requires physical work. Time taken for the data entry may lead to long queues. There should be a remotely manageable and data efficient system to do this task. 
 
-## Getting Started
+We propose that, the barcode on a person's ID card can be used to record the leave or outing time and date. A barcode scanner will be used to determine the barcode value and the data can be stored online by the system. A mobile phone camera can be used for further reducing the cost of implementation. The proposed system rectify the problem by digitalizing the data during outing or leave.
 
-This project is a starting point for a Flutter application.
+**Samples of the app:**
+![WhatsApp Image 2021-05-28 at 2 44 21 PM](https://user-images.githubusercontent.com/48490968/120586695-9b30e500-c451-11eb-89c0-d734c420ea6b.jpeg)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Technologies used:**
+Flutter
+Firebase
