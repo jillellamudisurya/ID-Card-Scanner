@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter_beautiful_popup/main.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -32,10 +34,11 @@ class _ContactUsState extends State<ContactUs> {
                       width: 150,
                       decoration: BoxDecoration(),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                         
+                        },
                         child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/surya.jpg'),
+                          backgroundImage: AssetImage('assets/surya.jpg'),
                           radius: 80.0,
                         ),
                       ),
@@ -59,8 +62,7 @@ class _ContactUsState extends State<ContactUs> {
                       child: TextButton(
                         onPressed: () {},
                         child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/yashwanth.jpg'),
+                          backgroundImage: AssetImage('assets/yashwanth.jpg'),
                           radius: 80.0,
                         ),
                       ),
@@ -86,8 +88,7 @@ class _ContactUsState extends State<ContactUs> {
                       child: TextButton(
                         onPressed: () {},
                         child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/aravindh.jpg'),
+                          backgroundImage: AssetImage('assets/aravindh.jpg'),
                           radius: 80.0,
                         ),
                       ),
@@ -111,8 +112,7 @@ class _ContactUsState extends State<ContactUs> {
                       child: TextButton(
                         onPressed: () {},
                         child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/saiganesh.jpg'),
+                          backgroundImage: AssetImage('assets/saiganesh.jpg'),
                           radius: 80.0,
                         ),
                       ),
