@@ -9,15 +9,124 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff34456e),
-        title: Text('ID Card Scanner'),
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      body: Center(
-        child: Text('Surya \n\nAravindh \n\nSai Ganesh  \n\nYashwanth'),
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Color(0xff34456e),
+          title: Text('About Us'),
+          centerTitle: true,
+          elevation: 0.0,
+        ),
+        body: Container(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/BG.png"), fit: BoxFit.cover),
+          ),
+          child: Column(children: [
+            SizedBox(height: 180),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 150,
+                      decoration: BoxDecoration(),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/surya.jpg'),
+                          radius: 80.0,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Surya',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 150,
+                      decoration: BoxDecoration(),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/yashwanth.jpg'),
+                          radius: 80.0,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Yashwanth Sai',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 150,
+                      decoration: BoxDecoration(),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/aravindh.jpg'),
+                          radius: 80.0,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Aravindh',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 150,
+                      decoration: BoxDecoration(),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/saiganesh.jpg'),
+                          radius: 80.0,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Sai Ganesh',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )
+                  ],
+                ),
+              ],
+            )
+          ]),
+        ));
   }
 }
