@@ -37,20 +37,34 @@ class DatabaseService {
   }
 
   Future<int> outing(String scan, String state) async {
-    final CollectionReference outingOut =
-        Firestore.instance.collection(_getDate());
-    DocumentSnapshot snap =
-        await Firestore.instance.collection('Students_Ph').document(scan).get();
-    if (snap == null || !snap.exists) {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    QuerySnapshot studDbPhn = await Firestore.instance
+        .collection('Students')
+        .where('emergenceyNumber', isEqualTo: scan)
+        .getDocuments();
+    QuerySnapshot studDbAadhar = await Firestore.instance
+        .collection('Students')
+        .where('aadhar', isEqualTo: scan)
+        .getDocuments();
+    if (studDbPhn.documents.length == 0 && studDbAadhar.documents.length == 0) {
+      Firestore.instance.collection('OUTSIDER').document().setData(
+          {'scanned': scan, 'time': _getTime(), 'loggedIn': user.displayName});
       return -1;
     }
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    DocumentSnapshot snap;
+    if (studDbPhn.documents.length == 1) {
+      snap = studDbPhn.documents.first;
+    } else if (studDbAadhar.documents.length == 1) {
+      snap = studDbAadhar.documents.first;
+    } else {
+      return 2;
+    }
+    final CollectionReference outingOut =
+        Firestore.instance.collection(_getDate());
     var timeNow = _getTime();
     if (state == 'Out') {
-      var collec = outingOut
-          .document('Outing')
-          .collection(state)
-          .document(snap.data['id']);
+      var collec = outingOut.document(snap.data['id']);
       DocumentSnapshot collecSnap = await collec.get();
       if (!(collecSnap == null || !collecSnap.exists)) {
         return 0;
@@ -59,18 +73,19 @@ class DatabaseService {
         'Name': snap.data['name'],
         'OutTime': timeNow,
         'InTime': 'NOT RETURNED',
-        'ScannedBy': user.displayName,
+        'InScannedBy': ' ',
+        'OutScannedBy': user.displayName,
       });
       return 1;
     } else {
-      var collec = outingOut
-          .document('Outing')
-          .collection('Out')
-          .document(snap.data['id']);
+      var collec = outingOut.document(snap.data['id']);
       DocumentSnapshot collecSnap = await collec.get();
       if (collecSnap.exists) {
         if (collecSnap.data['InTime'] == 'NOT RETURNED') {
-          collec.updateData({'InTime': timeNow});
+          collec.updateData({
+            'InTime': timeNow,
+            'InScannedBy': user.displayName,
+          });
           return 1;
         }
         return 0;
@@ -78,42 +93,45 @@ class DatabaseService {
       String yesterday = _getYesterday();
       final CollectionReference yesterdayOut =
           Firestore.instance.collection(yesterday);
-      var coll = yesterdayOut
-          .document('Outing')
-          .collection('Out')
-          .document(snap.data['id']);
+      var coll = yesterdayOut.document(snap.data['id']);
       DocumentSnapshot collSnap = await coll.get();
       if (collSnap.exists) {
         if (collSnap.data['InTime'] == 'NOT RETURNED') {
-          coll.updateData({'InTime': timeNow});
+          coll.updateData({
+            'InTime': timeNow,
+            'InScannedBy': user.displayName,
+          });
           return 1;
         }
-        return 0;
       }
       return 0;
     }
   }
 
   Future<int> leave(String scan, String state) async {
-    DocumentSnapshot snap =
-        await Firestore.instance.collection('Students_Ph').document(scan).get();
-    if (snap == null || !snap.exists) {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    QuerySnapshot studDbPhn = await Firestore.instance
+        .collection('Students')
+        .where('emergenceyNumber', isEqualTo: scan)
+        .getDocuments();
+    QuerySnapshot studDbAadhar = await Firestore.instance
+        .collection('Students')
+        .where('aadhar', isEqualTo: scan)
+        .getDocuments();
+    if (studDbPhn.documents.length == 0 && studDbAadhar.documents.length == 0) {
+      Firestore.instance.collection('OUTSIDER').document().setData(
+          {'scanned': scan, 'time': _getTime(), 'loggedIn': user.displayName});
       return -1;
     }
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    DocumentSnapshot snap;
+    if (studDbPhn.documents.length == 1) {
+      snap = studDbPhn.documents.first;
+    } else if (studDbAadhar.documents.length == 1) {
+      snap = studDbAadhar.documents.first;
+    } else {
+      return 2;
+    }
     var timeNow = _getTime();
-    // var collec =
-    //     leaveOut.document('Leave').collection(state).document(snap.data['id']);
-    // DocumentSnapshot collecSnap = await collec.get();
-    // if (!(collecSnap == null || !collecSnap.exists)) {
-    //   return 0;
-    // }
-    // collec.setData({
-    //   'Scanned': snap.data['name'],
-    //   'OutTime': timeNow,
-    //   'Scanned By Name': user.displayName
-    // });
-    // return 1;
     final CollectionReference leaveOut = Firestore.instance.collection('Leave');
 
     DocumentSnapshot snapshot = await leaveOut.document(snap.data['id']).get();
@@ -122,7 +140,8 @@ class DatabaseService {
         leaveOut.document(snap.data['id']).setData({
           'OutTime': timeNow,
           'InTime': 'NOT RETURNED',
-          'ScannedBy': user.displayName,
+          'InScannedBy': ' ',
+          'OutScannedBy': user.displayName,
           'name': snap.data['name'],
           'isOut': true
         });
@@ -131,7 +150,8 @@ class DatabaseService {
         leaveOut.document(snap.data['id']).updateData({
           'OutTime': timeNow,
           'InTime': 'NOT RETURNED',
-          'ScannedBy': user.displayName,
+          'InScannedBy': ' ',
+          'OutScannedBy': user.displayName,
           'isOut': true
         });
         return 1;
@@ -142,7 +162,7 @@ class DatabaseService {
         if (snapshot.data['isOut'] == true) {
           leaveOut.document(snap.data['id']).updateData({
             'InTime': timeNow,
-            'ScannedBy': user.displayName,
+            'InScannedBy': user.displayName,
             'isOut': false
           });
           return 1;
@@ -153,10 +173,7 @@ class DatabaseService {
   }
 
   Stream<QuerySnapshot> stud(String date) {
-    final CollectionReference sample = Firestore.instance
-        .collection(date)
-        .document("Outing")
-        .collection("Out");
+    final CollectionReference sample = Firestore.instance.collection(date);
     return sample.snapshots();
   }
 

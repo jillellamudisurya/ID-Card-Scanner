@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:idcardscanner/contactUs.dart';
+import 'package:idcardscanner/feedback.dart';
+
 
 // ignore: must_be_immutable
 class SideNav extends StatefulWidget {
@@ -62,6 +65,31 @@ class _DisplayNavState extends State<DisplayNav> {
             title: Text('View Today'),
             onTap: () {},
           ),
+                    Divider(),
+                    ListTile(
+            leading: Icon(
+              Icons.contact_page_rounded,
+              color: Color(0xff34456e),
+            ),
+            title: Text(
+              'Conatact Us',
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ContactUs()));
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.feedback),
+            title: Text('Feedback'),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => FeedBack()));
+            },
+          )
+
         ],
       ),
     );

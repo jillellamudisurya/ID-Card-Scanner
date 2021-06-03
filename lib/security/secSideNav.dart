@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/security/todayOut.dart';
 import 'package:idcardscanner/security/outingCount.dart';
+import 'package:idcardscanner/contactUs.dart';
+import 'package:idcardscanner/feedback.dart';
 
 // ignore: must_be_immutable
 class SecSideNav extends StatefulWidget {
@@ -82,6 +84,32 @@ class _DisplayNavState extends State<DisplayNav> {
                       builder: (BuildContext context) => CountToday()));
             },
           ),
+          
+          Divider(),
+                    ListTile(
+            leading: Icon(
+              Icons.contact_page_rounded,
+              color: Color(0xff34456e),
+            ),
+            title: Text(
+              'Conatact Us',
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ContactUs()));
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.feedback),
+            title: Text('Feedback'),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => FeedBack()));
+            },
+          )
+
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/admin/admin_login.dart';
+import 'package:idcardscanner/contactUs.dart';
+import 'package:idcardscanner/feedback.dart';
 import 'package:idcardscanner/security/security_login.dart';
 
 class Homepage extends StatelessWidget {
@@ -7,6 +9,8 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       //backgroundColor: Colors.grey[850],
       appBar: AppBar(
@@ -15,6 +19,47 @@ class Homepage extends StatelessWidget {
         centerTitle: true,
         elevation: 0.0,
       ),
+      drawer: Drawer(
+          child: ListView(
+        children: <Widget>[
+          Container(
+            height: height * 0.2,
+            color: Color(0xff34456e),
+            child: Center(
+              child: Center(
+                child: Text(
+                  'HOME',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.contact_page_rounded,
+              color: Color(0xff34456e),
+            ),
+            title: Text(
+              'Conatact Us',
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ContactUs()));
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.feedback),
+            title: Text('Feedback'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => FeedBack()));
+            },
+          )
+        ],
+      )),
 
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20),

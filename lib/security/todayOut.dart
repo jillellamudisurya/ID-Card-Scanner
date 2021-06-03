@@ -53,17 +53,18 @@ class _TodayDataState extends State<TodayData> {
       List<StudentOut> studData = [];
       for (var i in data.documents) {
         DocumentSnapshot snap = await Firestore.instance
-            .collection('Student_Ph')
+            .collection('Students')
             .document(i.documentID)
             .get();
         try {
           studData.add(StudentOut(
               id: snap.data['id'],
               name: snap.data['name'],
-              gender: snap.data['gender'],
+              // gender: snap.data['gender'],
               outTime: i.data['OutTime'],
               inTime: i.data['InTime'],
-              scannedBy: i.data['ScannedBy']));
+              inScannedBy: i.data['InScannedBy'],
+              outScannedBy: i.data['OutScannedBy']));
         } catch (e) {
           print(e);
         }
@@ -84,13 +85,14 @@ class _TodayDataState extends State<TodayData> {
               columns: [
                 'ID',
                 'Name',
-                'Gender',
-                'OutTime',
-                'Intime',
-                'Scanned By'
+                // 'Gender',
+                'Out Time',
+                'Out Scanned By',
+                'In Time',
+                'In Scanned By'
               ],
             );
-          return Container();
+          return Loading();
         }
       },
     );

@@ -10,7 +10,8 @@ class StudentOut {
       phone,
       room,
       outTime,
-      scannedBy,
+      outScannedBy,
+      inScannedBy,
       inTime,
       gender;
 
@@ -21,7 +22,8 @@ class StudentOut {
       this.phone,
       this.room,
       this.outTime,
-      this.scannedBy,
+      this.outScannedBy,
+      this.inScannedBy,
       this.inTime,
       this.gender});
 }

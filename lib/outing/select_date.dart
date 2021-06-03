@@ -61,7 +61,7 @@ class _SelectDateState extends State<SelectDate> {
                   onSelectionChanged: _onSelectionChanged,
                   selectionMode: DateRangePickerSelectionMode.single,
                   initialSelectedDate: DateTime.now(),
-                  minDate: DateTime(2021, 05, 29, 0, 0, 0),
+                  //   minDate: DateTime(2021, 05, 29, 0, 0, 0),
                   maxDate: DateTime.now(),
                   showNavigationArrow: true,
                 ),

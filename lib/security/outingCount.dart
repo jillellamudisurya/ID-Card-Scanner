@@ -52,13 +52,14 @@ class _GetCountState extends State<GetCount> {
       double male = 0, female = 0;
       for (var i in data.documents) {
         DocumentSnapshot snap = await Firestore.instance
-            .collection('Student_Ph')
+            .collection('Students')
             .document(i.documentID)
             .get();
         try {
           if (snap.data['gender'] == 'Male') {
             male++;
-          } else {
+          }
+          if (snap.data['gender'] == 'Female') {
             female++;
           }
         } catch (e) {

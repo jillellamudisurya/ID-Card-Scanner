@@ -66,7 +66,7 @@ class _MyTableState extends State<MyTable> {
           child: new ListTile(
             leading: new Icon(Icons.search),
             title: new TextField(
-//                controller: controller,
+                // controller: controller,
                 decoration: new InputDecoration(
                     hintText: 'Search', border: InputBorder.none),
                 onChanged: (value) {
@@ -75,6 +75,9 @@ class _MyTableState extends State<MyTable> {
                     temp = widget.studData
                         .where((user) =>
                             user.id
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.gender
                                 .toLowerCase()
                                 .contains(_searchResult.toLowerCase()) ||
                             user.name
@@ -95,7 +98,10 @@ class _MyTableState extends State<MyTable> {
                             user.room
                                 .toLowerCase()
                                 .contains(_searchResult.toLowerCase()) ||
-                            user.scannedBy
+                            user.inScannedBy
+                                .toLowerCase()
+                                .contains(_searchResult.toLowerCase()) ||
+                            user.outScannedBy
                                 .toLowerCase()
                                 .contains(_searchResult.toLowerCase()))
                         .toList();
@@ -150,8 +156,11 @@ class _MyTableState extends State<MyTable> {
                   if (stud.classR != null) data += stud.classR + ",";
                   if (stud.room != null) data += stud.room + ",";
                   if (stud.outTime != null) data += stud.outTime + ",";
+                  if (stud.outScannedBy != null)
+                    data += stud.outScannedBy + ",";
                   if (stud.inTime != null) data += stud.inTime + ",";
-                  if (stud.scannedBy != null) data += stud.scannedBy + ",";
+                  if (stud.inScannedBy != null) data += stud.inScannedBy + ",";
+
                   data += '\n';
                 }
                 file.writeAsString(data);
@@ -192,8 +201,8 @@ class _MyTableState extends State<MyTable> {
       widget.studData
           .sort((s1, s2) => compareString(ascending, s1.outTime, s2.outTime));
     } else if (columnIndex == 6) {
-      widget.studData.sort(
-          (s1, s2) => compareString(ascending, s1.scannedBy, s2.scannedBy));
+      widget.studData.sort((s1, s2) =>
+          compareString(ascending, s1.outScannedBy, s2.outScannedBy));
     }
 
     setState(() {
@@ -223,8 +232,9 @@ class DTS extends DataTableSource {
     if (stud.classR != null) cells.add(DataCell(Text(stud.classR)));
     if (stud.room != null) cells.add(DataCell(Text(stud.room)));
     if (stud.outTime != null) cells.add(DataCell(Text(stud.outTime)));
+    if (stud.outScannedBy != null) cells.add(DataCell(Text(stud.outScannedBy)));
     if (stud.inTime != null) cells.add(DataCell(Text(stud.inTime)));
-    if (stud.scannedBy != null) cells.add(DataCell(Text(stud.scannedBy)));
+    if (stud.inScannedBy != null) cells.add(DataCell(Text(stud.inScannedBy)));
     MaterialStateProperty<Color> s =
         MaterialStateColor.resolveWith((states) => r);
     return DataRow.byIndex(index: index, cells: cells, color: s);

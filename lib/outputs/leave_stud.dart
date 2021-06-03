@@ -18,20 +18,22 @@ class _LeaveStudState extends State<LeaveStud> {
       List<StudentOut> studData = [];
       for (var i in data.documents) {
         DocumentSnapshot snap = await Firestore.instance
-            .collection('Student_Ph')
+            .collection('Students')
             .document(i.documentID)
             .get();
         try {
           studData.add(StudentOut(
-              classR: snap.data['class'],
-              id: snap.data['id'],
-              name: snap.data['name'],
-              gender: snap.data['gender'],
-              phone: snap.data['phone'],
-              room: snap.data['room'],
-              outTime: i.data['OutTime'],
-              inTime: i.data['InTime'],
-              scannedBy: i.data['ScannedBy']));
+            classR: snap.data['class'],
+            id: snap.data['id'],
+            name: snap.data['name'],
+//            gender: snap.data['gender'],
+            phone: snap.data['emergenceyNumber'],
+            //          room: snap.data['room'],
+            outTime: i.data['OutTime'],
+            outScannedBy: i.data['OutScannedBy'],
+            inTime: i.data['InTime'],
+            inScannedBy: i.data['InScannedBy'],
+          ));
         } catch (e) {
           print(e);
         }
@@ -52,16 +54,17 @@ class _LeaveStudState extends State<LeaveStud> {
               columns: [
                 'ID',
                 'Name',
-                'Gender',
+                //              'Gender',
                 'Phone',
                 'Class',
-                'Room',
-                'OutTime',
-                'Intime',
-                'Scanned By'
+                //            'Room',
+                'Out Time',
+                'Out Scanned By',
+                'In Time',
+                'In Scanned By'
               ],
             );
-          return Container();
+          return Loading();
         }
       },
     );
