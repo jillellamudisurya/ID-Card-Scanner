@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Input extends StatelessWidget {
   final labelText;
   final IconData icon;
   final Function validator;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   Input({this.labelText, this.icon, this.validator});
   @override
   Widget build(BuildContext context) {
     return Theme(
       child: Form(
+        key: formkey,
+        autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
           validator: validator,
           decoration: InputDecoration(

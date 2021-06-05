@@ -48,8 +48,6 @@ class DatabaseService {
         .where('aadhar', isEqualTo: scan)
         .getDocuments();
     if (studDbPhn.documents.length == 0 && studDbAadhar.documents.length == 0) {
-      Firestore.instance.collection('OUTSIDER').document().setData(
-          {'scanned': scan, 'time': _getTime(), 'loggedIn': user.displayName});
       return -1;
     }
     DocumentSnapshot snap;
@@ -119,8 +117,6 @@ class DatabaseService {
         .where('aadhar', isEqualTo: scan)
         .getDocuments();
     if (studDbPhn.documents.length == 0 && studDbAadhar.documents.length == 0) {
-      Firestore.instance.collection('OUTSIDER').document().setData(
-          {'scanned': scan, 'time': _getTime(), 'loggedIn': user.displayName});
       return -1;
     }
     DocumentSnapshot snap;
@@ -180,5 +176,33 @@ class DatabaseService {
   Stream<QuerySnapshot> get leaveDB {
     final CollectionReference leaves = Firestore.instance.collection('Leave');
     return leaves.snapshots();
+  }
+
+  Future<bool> addStudent(
+      String fname,
+      String id,
+      String dob,
+      String emergencyNumber,
+      String blood,
+      String address,
+      String adhaar,
+      String classR) async {
+    try {
+      final CollectionReference outsider =
+          Firestore.instance.collection('Outsider');
+      await outsider.document(id.toUpperCase()).setData({
+        'id': id.toUpperCase(),
+        'name': fname,
+        'class': classR,
+        'emergenceyNumber': emergencyNumber,
+        'aadhar': adhaar,
+        'dob': dob,
+        'blood': blood,
+        'address': address
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }

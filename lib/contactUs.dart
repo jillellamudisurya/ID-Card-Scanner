@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_beautiful_popup/main.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+//import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -34,9 +34,7 @@ class _ContactUsState extends State<ContactUs> {
                       width: 150,
                       decoration: BoxDecoration(),
                       child: TextButton(
-                        onPressed: () {
-                         
-                        },
+                        onPressed: () {},
                         child: CircleAvatar(
                           backgroundImage: AssetImage('assets/surya.jpg'),
                           radius: 80.0,
