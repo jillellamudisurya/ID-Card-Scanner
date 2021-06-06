@@ -39,7 +39,7 @@ dependencies:
 
   excel: ^1.1.5
   path_provider:
-
+  page_transition: ^2.0.2
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -21,12 +21,6 @@ class _SecloginState extends State<Seclogin> {
         ? Loading()
         : Scaffold(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Color(0xff34456e),
-              elevation: 0,
-              centerTitle: true,
-              title: Text("ID Card Scanner"),
-            ),
             body: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
