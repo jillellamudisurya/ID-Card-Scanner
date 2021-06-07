@@ -35,7 +35,7 @@ class _CallDbOutState extends State<CallDbOut> {
             } else {
               // AlertDialogs.okDialog(
               //     context, 'OUTSIDER', 'Please scan student ID card');
-              return Outsider();
+              return Outsider(scan);
             }
           } else {
             return Loading();
@@ -76,7 +76,7 @@ class _CallDbLeaveState extends State<CallDbLeave> {
             } else {
               // AlertDialogs.okDialog(
               //     context, 'OUTSIDER', 'Please scan student ID card');
-              return Outsider();
+              return Outsider(scan);
             }
           } else {
             return Loading();

@@ -60,12 +60,18 @@ class _WentoutState extends State<Wentout> {
   }
 }
 
+// ignore: must_be_immutable
 class Outsider extends StatefulWidget {
+  String scandata;
+  Outsider(this.scandata);
   @override
-  _OutsiderState createState() => _OutsiderState();
+  _OutsiderState createState() => _OutsiderState(scandata);
 }
 
 class _OutsiderState extends State<Outsider> {
+  String scandata;
+
+  _OutsiderState(this.scandata);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +88,13 @@ class _OutsiderState extends State<Outsider> {
             SizedBox(
               height: 20,
             ),
+            Text(
+              'The Result Data is:: ',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(scandata,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20,),
             Text(
               'You are an OUTSIDER!!\nPlease Scan college ID card',
               style: TextStyle(
