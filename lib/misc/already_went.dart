@@ -93,7 +93,11 @@ class _OutsiderState extends State<Outsider> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(scandata,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                  fontSize: 24, 
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  backgroundColor: Colors.black)),
             SizedBox(height: 20,),
             Text(
               'You are an OUTSIDER!!\nPlease Scan college ID card',

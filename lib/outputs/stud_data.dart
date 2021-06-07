@@ -55,7 +55,7 @@ class _StudDataState extends State<StudData> {
                 'ID',
                 'Name',
 //                'Gender',
-                'Emergency Nummber',
+                'Emergency Number',
                 'Class',
                 //               'Room',
                 'Out Time',
