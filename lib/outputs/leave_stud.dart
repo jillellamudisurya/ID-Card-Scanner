@@ -54,10 +54,10 @@ class _LeaveStudState extends State<LeaveStud> {
               columns: [
                 'ID',
                 'Name',
-                //              'Gender',
-                'Phone',
+//                'Gender',
+                'Emergency Number',
                 'Class',
-                //            'Room',
+                //               'Room',
                 'Out Time',
                 'Out Scanned By',
                 'In Time',

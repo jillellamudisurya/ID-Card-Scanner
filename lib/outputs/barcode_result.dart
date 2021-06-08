@@ -42,19 +42,21 @@ class _BarcodeResultState extends State<BarcodeResult> {
             SizedBox(height: 30.0),
             Center(
                 child: Text(
-              'The Result of SCAN DATA is:: ',
+              'Data Stored in DataBase ',
               style: TextStyle(
                 fontSize: 25.0,
                 color: Colors.red,
               ),
             )),
             SizedBox(height: 30.0),
-            Center(
-                child: Text(result,
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 30.0,
-                    ))),
+           // Center(
+             //   child: Text(result,
+               //     style: TextStyle(
+                 //     fontSize: 30, 
+                  //fontWeight: FontWeight.bold,
+                  //color: Colors.white,
+                  //backgroundColor: Colors.black,
+                   // ))),
             SizedBox(height: 30.0),
             Center(
               child: ElevatedButton.icon(

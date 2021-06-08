@@ -34,7 +34,9 @@ class _ContactUsState extends State<ContactUs> {
                       width: 150,
                       decoration: BoxDecoration(),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          
+                        },
                         child: CircleAvatar(
                           backgroundImage: AssetImage('assets/surya.jpg'),
                           radius: 80.0,
@@ -45,7 +47,10 @@ class _ContactUsState extends State<ContactUs> {
                       'Surya',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    )
+                    ),
+                    Text('Front-End Developer',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))
                   ],
                 ),
                 SizedBox(
@@ -69,7 +74,10 @@ class _ContactUsState extends State<ContactUs> {
                       'Yashwanth Sai',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    )
+                    ),
+                    Text('Back-End Developer',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))
                   ],
                 ),
               ],
@@ -95,7 +103,10 @@ class _ContactUsState extends State<ContactUs> {
                       'Aravindh',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    )
+                    ),
+                    Text('Front/Back-End Developer',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))
                   ],
                 ),
                 SizedBox(
@@ -119,7 +130,10 @@ class _ContactUsState extends State<ContactUs> {
                       'Sai Ganesh',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    )
+                    ),
+                    Text('Web Developer',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))
                   ],
                 ),
               ],
