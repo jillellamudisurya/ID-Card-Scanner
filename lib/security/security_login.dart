@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/errors/login_alert.dart';
 import 'package:idcardscanner/services/auth.dart';
 import 'package:idcardscanner/misc/loading.dart';
+import 'package:idcardscanner/wrapper.dart';
 
 class Seclogin extends StatefulWidget {
   @override
   _SecloginState createState() => _SecloginState();
 }
-
 class _SecloginState extends State<Seclogin> {
   final AuthService _auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -21,6 +21,12 @@ class _SecloginState extends State<Seclogin> {
         ? Loading()
         : Scaffold(
             backgroundColor: Colors.white,
+            appBar: AppBar(
+              backgroundColor: Color(0xff34456e),
+              elevation: 0,
+              centerTitle: true,
+              title: Text("ID Card Scanner"),
+            ),
             body: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -165,7 +171,8 @@ class _SecloginState extends State<Seclogin> {
                                       'Incorrect Details',
                                       'Enter valid Details');
                                 } else {
-                                  Navigator.pop(context);
+                                	Navigator.pop(context);
+
                                 }
                               }
                             },

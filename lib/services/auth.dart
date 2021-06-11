@@ -34,7 +34,7 @@ class AuthService {
         signout();
         return null;
       }
-      return user.uid;
+      return user;
     } catch (e) {
       return null;
     }

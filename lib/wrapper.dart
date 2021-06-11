@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idcardscanner/admin/admin_success.dart';
 import 'package:idcardscanner/home.dart';
+import 'package:idcardscanner/misc/loading.dart';
 import 'package:idcardscanner/security/security_success.dart';
 import 'package:idcardscanner/misc/user.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class Wrapper extends StatelessWidget {
               return Secsuccess(user.name, user.img);
             }
           } else {
-            return Container();
+            return Loading();
           }
         });
   }
