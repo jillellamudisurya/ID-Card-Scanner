@@ -27,3 +27,8 @@ class StudentOut {
       this.inTime,
       this.gender});
 }
+
+class Stats {
+  int students, totalOut, out, leave;
+  Stats({this.students, this.totalOut, this.out, this.leave});
+}

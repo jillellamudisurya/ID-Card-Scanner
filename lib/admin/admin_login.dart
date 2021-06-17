@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:idcardscanner/misc/loading.dart';
 import 'package:idcardscanner/errors/login_alert.dart';
 import 'package:idcardscanner/services/auth.dart';
-import 'package:idcardscanner/wrapper.dart';
 
 class Adminlogin extends StatefulWidget {
   @override
   _AdminloginState createState() => _AdminloginState();
 }
+
 class _AdminloginState extends State<Adminlogin> {
   final AuthService _auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();

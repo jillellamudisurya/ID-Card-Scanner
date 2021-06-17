@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:idcardscanner/admin/todayStats.dart';
 import 'package:idcardscanner/contactUs.dart';
 import 'package:idcardscanner/feedback.dart';
-
 
 // ignore: must_be_immutable
 class SideNav extends StatefulWidget {
@@ -62,11 +62,15 @@ class _DisplayNavState extends State<DisplayNav> {
               Icons.person,
               color: Colors.deepOrange,
             ),
-            title: Text('View Today'),
-            onTap: () {},
+            title: Text('Today Count'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TodayStats()));
+            },
           ),
-                    Divider(),
-                    ListTile(
+          Divider(),
+          ListTile(
             leading: Icon(
               Icons.contact_page_rounded,
               color: Color(0xff34456e),
@@ -89,7 +93,6 @@ class _DisplayNavState extends State<DisplayNav> {
                   context, MaterialPageRoute(builder: (context) => FeedBack()));
             },
           )
-
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:idcardscanner/misc/user.dart';
 
 class DatabaseService {
   _getDate() {
@@ -180,6 +181,33 @@ class DatabaseService {
   Stream<QuerySnapshot> get leaveDB {
     final CollectionReference leaves = Firestore.instance.collection('Leave');
     return leaves.snapshots();
+  }
+
+  Future<Stats> todayCount() async {
+    int totalStudents = await Firestore.instance
+        .collection('Students')
+        .getDocuments()
+        .then((value) => value.documents.length);
+    int totalTodayOut = await Firestore.instance
+        .collection(_getDate())
+        .getDocuments()
+        .then((value) => value.documents.length);
+    int todayOut = await Firestore.instance
+        .collection(_getDate())
+        .where('InTime', isEqualTo: "NOT RETURNED")
+        .getDocuments()
+        .then((value) => value.documents.length);
+    int leaveCount = await Firestore.instance
+        .collection('Leave')
+        .where('isOut', isEqualTo: true)
+        .getDocuments()
+        .then((value) => value.documents.length);
+
+    return Stats(
+        students: totalStudents,
+        totalOut: totalTodayOut,
+        out: todayOut,
+        leave: leaveCount);
   }
 
   Future<bool> addStudent(
